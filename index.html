@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background: 
+ !important;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Authentication Portal</title>
     <style>
-        html {
+        html, body {
             background: 
+ !important;
+            background-color: 
  !important;
         }
 
@@ -18,27 +21,12 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: 
- !important;
-            background-image: linear-gradient(135deg, 
+            background: linear-gradient(135deg, 
  0%, 
  100%) !important;
             min-height: 100vh;
             padding: 20px;
             color: #333;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
- 0%, 
- 100%);
-            z-index: -1;
         }
 
         .container {
@@ -92,8 +80,7 @@
 
         .nav-button {
             background: rgba(168, 216, 255, 0.3);
-            color: 
-;
+            color: #1a1a1a;
             border: 1px solid rgba(142, 197, 252, 0.4);
             border-radius: 16px;
             padding: 20px 16px;
@@ -131,8 +118,7 @@
 
         .section-header h2 {
             font-size: 18px;
-            color: 
-;
+            color: #1a1a1a;
             font-weight: 700;
             margin-bottom: 6px;
         }
@@ -167,7 +153,7 @@
 
         .clear-btn {
             background: 
-;
+ !important;
             color: white;
             border: none;
             border-radius: 20px;
@@ -182,8 +168,7 @@
         }
 
         .clear-btn:hover {
-            background: 
-;
+            background: #dc2626 !important;
             transform: scale(1.05);
         }
 
@@ -194,8 +179,7 @@
             border-radius: 12px;
             font-size: 14px;
             background: white !important;
-            color: 
-;
+            color: #1a1a1a;
             transition: all 0.3s ease;
             font-family: inherit;
         }
@@ -217,8 +201,7 @@
 
         .btn {
             background: linear-gradient(135deg, 
- 0%, 
- 100%);
+ 0%, #8ec5fc 100%);
             color: 
 ;
             border: none;
@@ -390,6 +373,15 @@
             border-color: 
 ;
             box-shadow: 0 2px 12px rgba(142, 197, 252, 0.2);
+        }
+
+        .recent-key {
+            font-size: 12px;
+            color: 
+;
+            margin-bottom: 6px;
+            font-weight: 500;
+            word-break: break-all;
         }
 
         .recent-code {
@@ -589,6 +581,12 @@
     </div>
 
     <script>
+        // Force dark background
+        document.documentElement.style.background = '
+';
+        document.body.style.background = 'linear-gradient(135deg, 
+ 0%, #16213e 100%)';
+
         let recentCodes = [];
         let recentVisible = false;
         let mailCheckInterval = null;
@@ -622,7 +620,7 @@
                 showSuccessMessage('✅ Code generated!');
             });
 
-            addToRecent(code);
+            addToRecent(secretKey, code);
         });
 
         // Copy Generated Code
@@ -637,8 +635,8 @@
             }
         });
 
-        // Add to Recent
-        function addToRecent(code) {
+        // Add to Recent (with 2FA key)
+        function addToRecent(key, code) {
             const now = new Date();
             const timeString = now.toLocaleTimeString('en-US', { 
                 hour: '2-digit', 
@@ -646,12 +644,17 @@
                 hour12: true 
             });
             
-            recentCodes.unshift({ code: code, time: timeString });
+            recentCodes.unshift({ 
+                key: key,
+                code: code, 
+                time: timeString 
+            });
+            
             if (recentCodes.length > 10) recentCodes.pop();
             updateRecentList();
         }
 
-        // Update Recent List
+        // Update Recent List (show 2FA key + code)
         function updateRecentList() {
             const listDiv = document.getElementById('recentList');
             
@@ -662,6 +665,7 @@
 
             listDiv.innerHTML = recentCodes.map(item => `
                 <div class="recent-item">
+                    <div class="recent-key">🔑 ${item.key}</div>
                     <div class="recent-code">${item.code}</div>
                     <div class="recent-time">${item.time}</div>
                 </div>
