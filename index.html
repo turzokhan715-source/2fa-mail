@@ -1,45 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" style="background: 
- !important;">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Authentication Portal</title>
     <style>
-        html, body {
-            background: 
- !important;
-            background-color: 
- !important;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            background: 
+;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, 
- 0%, 
- 100%) !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+;
             min-height: 100vh;
             padding: 20px;
-            color: #333;
         }
 
         .container {
             max-width: 500px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
         }
 
         .header {
             text-align: center;
             color: 
- !important;
+;
             margin-bottom: 24px;
             padding: 16px 0;
         }
@@ -48,28 +41,22 @@
             font-size: 20px;
             margin-bottom: 6px;
             font-weight: 700;
-            letter-spacing: -0.3px;
             color: 
- !important;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+;
         }
 
         .header p {
             font-size: 13px;
-            opacity: 0.85;
-            font-weight: 400;
             color: 
- !important;
+;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95) !important;
+            background: white;
             border-radius: 20px;
             padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             margin-bottom: 16px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .button-grid {
@@ -79,36 +66,35 @@
         }
 
         .nav-button {
-            background: rgba(168, 216, 255, 0.3);
-            color: #1a1a1a;
-            border: 1px solid rgba(142, 197, 252, 0.4);
+            background: 
+;
+            color: 
+;
+            border: none;
             border-radius: 16px;
-            padding: 20px 16px;
+            padding: 20px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 16px rgba(142, 197, 252, 0.15);
+            transition: all 0.3s;
             min-height: 80px;
         }
 
         .nav-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(142, 197, 252, 0.25);
-            background: rgba(168, 216, 255, 0.4);
+            background: 
+;
+            transform: translateY(-2px);
         }
 
         .nav-button.active {
-            background: rgba(168, 216, 255, 0.5);
-            border-color: rgba(142, 197, 252, 0.6);
+            background: 
+;
         }
 
         .nav-button .icon {
             font-size: 36px;
+            display: block;
+            margin-bottom: 8px;
         }
 
         .section-header {
@@ -118,7 +104,8 @@
 
         .section-header h2 {
             font-size: 18px;
-            color: #1a1a1a;
+            color: 
+;
             font-weight: 700;
             margin-bottom: 6px;
         }
@@ -127,7 +114,6 @@
             font-size: 13px;
             color: 
 ;
-            font-weight: 400;
         }
 
         .input-group {
@@ -148,12 +134,11 @@
             font-size: 12px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-bottom: 8px;
         }
 
         .clear-btn {
             background: 
- !important;
+;
             color: white;
             border: none;
             border-radius: 20px;
@@ -161,49 +146,43 @@
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .clear-btn:hover {
-            background: #dc2626 !important;
-            transform: scale(1.05);
+            background: 
+;
         }
 
         .input-box {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid rgba(142, 197, 252, 0.3);
+            border: 1px solid 
+;
             border-radius: 12px;
             font-size: 14px;
-            background: white !important;
-            color: #1a1a1a;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            background: white;
+            color: 
+;
         }
 
         .input-box:focus {
             outline: none;
             border-color: 
 ;
-            box-shadow: 0 0 0 4px rgba(142, 197, 252, 0.15);
-            background: white !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         textarea.input-box {
             min-height: 100px;
             resize: vertical;
             font-family: 'Courier New', monospace;
-            line-height: 1.5;
         }
 
         .btn {
             background: linear-gradient(135deg, 
- 0%, #8ec5fc 100%);
-            color: 
-;
+ 0%, 
+ 100%);
+            color: white;
             border: none;
             border-radius: 12px;
             padding: 14px 24px;
@@ -211,21 +190,15 @@
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 4px 16px rgba(142, 197, 252, 0.3);
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(142, 197, 252, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(0);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
 
         .display-label {
@@ -246,7 +219,8 @@
             word-break: break-all;
             margin-bottom: 16px;
             padding: 12px;
-            background: rgba(142, 197, 252, 0.1);
+            background: 
+;
             border-radius: 8px;
         }
 
@@ -259,7 +233,8 @@
 ;
             font-weight: 700;
             padding: 20px;
-            background: rgba(142, 197, 252, 0.15);
+            background: 
+;
             border-radius: 12px;
             margin-bottom: 16px;
         }
@@ -272,30 +247,25 @@
             background: linear-gradient(135deg, 
  0%, 
  100%);
-            color: 
-;
+            color: white;
             border: none;
             border-radius: 10px;
             padding: 10px 20px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 2px 12px rgba(142, 197, 252, 0.3);
         }
 
         .copy-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(142, 197, 252, 0.4);
         }
 
         .copy-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
         }
 
         .recent-header {
@@ -304,25 +274,20 @@
             align-items: center;
             cursor: pointer;
             padding: 12px;
-            background: rgba(142, 197, 252, 0.1);
+            background: 
+;
             border-radius: 12px;
-            transition: all 0.2s ease;
         }
 
         .recent-header:hover {
-            background: rgba(142, 197, 252, 0.15);
+            background: 
+;
         }
 
         .recent-title {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .checkbox {
-            font-size: 18px;
-            color: 
-;
         }
 
         .recent-header h3 {
@@ -342,17 +307,11 @@
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .toggle-btn:hover {
-            transform: scale(1.05);
-            background: 
-;
         }
 
         .recent-list {
-            background: rgba(142, 197, 252, 0.08);
+            background: 
+;
             border-radius: 12px;
             padding: 12px;
             margin-top: 12px;
@@ -361,18 +320,12 @@
         }
 
         .recent-item {
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             padding: 14px;
             border-radius: 10px;
             margin-bottom: 8px;
-            border: 1px solid rgba(142, 197, 252, 0.2);
-            transition: all 0.2s ease;
-        }
-
-        .recent-item:hover {
-            border-color: 
+            border: 1px solid 
 ;
-            box-shadow: 0 2px 12px rgba(142, 197, 252, 0.2);
         }
 
         .recent-key {
@@ -380,7 +333,6 @@
             color: 
 ;
             margin-bottom: 6px;
-            font-weight: 500;
             word-break: break-all;
         }
 
@@ -398,7 +350,6 @@
             color: 
 ;
             margin-top: 6px;
-            font-weight: 500;
         }
 
         .empty-state {
@@ -410,31 +361,29 @@
         }
 
         .back-btn {
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             color: 
 ;
-            border: 1px solid rgba(142, 197, 252, 0.3);
+            border: 1px solid 
+;
             border-radius: 12px;
             padding: 10px 20px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             margin-bottom: 20px;
-            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            backdrop-filter: blur(10px);
         }
 
         .back-btn:hover {
-            background: white;
-            transform: translateX(-4px);
-            box-shadow: 0 4px 12px rgba(142, 197, 252, 0.2);
+            background: 
+;
         }
 
         .hidden {
-            display: none !important;
+            display: none;
         }
 
         .waiting {
@@ -463,19 +412,6 @@
             text-align: center;
             font-size: 14px;
             font-weight: 600;
-            animation: slideDown 0.3s ease;
-            box-shadow: 0 4px 16px rgba(129, 199, 132, 0.3);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
@@ -492,7 +428,7 @@
                     <button class="nav-button active">
                         <span class="icon">🔐</span>
                     </button>
-                    <button class="nav-button" id="mailNavBtn">
+                    <button class="nav-button" onclick="goToMail()">
                         <span class="icon">📧</span>
                     </button>
                 </div>
@@ -507,39 +443,37 @@
                     <div class="input-label">SECRET KEY</div>
                     <input type="text" id="secretKey" class="input-box" placeholder="J8WHY1DRHMPKJ9XP">
                 </div>
-                <button class="btn" id="generateBtn">
+                <button class="btn" onclick="generateCode()">
                     <span>🔑</span> Generate Code
                 </button>
             </div>
 
-            <div id="2faCodeDisplay" class="card hidden">
+            <div id="codeCard" class="card hidden">
                 <div class="display-label">GENERATED CODE</div>
                 <div class="code-display" id="generatedCode">------</div>
                 <div class="center-btn">
-                    <button class="copy-btn" id="copyGeneratedBtn">
+                    <button class="copy-btn" onclick="copyGenerated()">
                         <span>📋</span> Copy Code
                     </button>
                 </div>
             </div>
 
             <div class="card">
-                <div class="recent-codes">
-                    <div class="recent-header" id="recentHeader">
-                        <div class="recent-title">
-                            <span class="checkbox">☐</span>
-                            <h3>Recent Codes</h3>
-                        </div>
-                        <button class="toggle-btn" id="toggleBtn">Show</button>
+                <div class="recent-header" onclick="toggleRecent()">
+                    <div class="recent-title">
+                        <span>☐</span>
+                        <h3>Recent Codes</h3>
                     </div>
-                    <div id="recentList" class="recent-list hidden">
-                        <p class="empty-state">No codes generated yet</p>
-                    </div>
+                    <button class="toggle-btn" id="toggleBtn">Show</button>
+                </div>
+                <div id="recentList" class="recent-list hidden">
+                    <p class="empty-state">No codes generated yet</p>
                 </div>
             </div>
         </div>
 
         <div id="mailPage" class="hidden">
-            <button class="back-btn" id="backBtn">
+            <button class="back-btn" onclick="goToMain()">
                 <span>←</span> Back
             </button>
             
@@ -552,27 +486,27 @@
                 <div class="input-group">
                     <div class="input-header">
                         <div class="input-label">Account Details</div>
-                        <button class="clear-btn" id="clearBtn">
+                        <button class="clear-btn" onclick="clearMail()">
                             <span>✕</span> Clear
                         </button>
                     </div>
-                    <textarea id="tokenInput" class="input-box" placeholder="Paste full token here...&#10;email|password|token"></textarea>
+                    <textarea id="tokenInput" class="input-box" placeholder="Paste full token here...&#10;email|password|token" oninput="extractEmail()"></textarea>
                 </div>
             </div>
 
-            <div id="emailDisplay" class="card hidden">
+            <div id="emailCard" class="card hidden">
                 <div class="display-label">📧 EXTRACTED EMAIL</div>
                 <div class="display-content" id="extractedEmail"></div>
-                <button class="copy-btn" id="copyEmailBtn">
+                <button class="copy-btn" onclick="copyEmail()">
                     <span>📋</span> Copy Email
                 </button>
             </div>
 
-            <div id="codeDisplay" class="card hidden">
+            <div id="verifyCard" class="card hidden">
                 <div class="display-label">🔢 VERIFICATION CODE</div>
                 <div class="code-display waiting" id="verificationCode">Waiting... ⏳</div>
                 <div class="center-btn">
-                    <button class="copy-btn" id="copyCodeBtn" disabled>
+                    <button class="copy-btn" id="copyVerifyBtn" onclick="copyVerify()" disabled>
                         <span>📋</span> Copy Code
                     </button>
                 </div>
@@ -581,89 +515,61 @@
     </div>
 
     <script>
-        // Force dark background
-        document.documentElement.style.background = '
-';
-        document.body.style.background = 'linear-gradient(135deg, 
- 0%, #16213e 100%)';
+        let recent = [];
+        let showRecent = false;
+        let checkInterval = null;
 
-        let recentCodes = [];
-        let recentVisible = false;
-        let mailCheckInterval = null;
-
-        // Page Navigation
-        function showPage(pageId) {
-            document.getElementById('mainPage').classList.add('hidden');
+        function goToMain() {
+            document.getElementById('mainPage').classList.remove('hidden');
             document.getElementById('mailPage').classList.add('hidden');
-            document.getElementById(pageId).classList.remove('hidden');
         }
 
-        document.getElementById('mailNavBtn').addEventListener('click', () => showPage('mailPage'));
-        document.getElementById('backBtn').addEventListener('click', () => showPage('mainPage'));
+        function goToMail() {
+            document.getElementById('mainPage').classList.add('hidden');
+            document.getElementById('mailPage').classList.remove('hidden');
+        }
 
-        // 2FA Generate Code
-        document.getElementById('generateBtn').addEventListener('click', function() {
-            const secretKey = document.getElementById('secretKey').value.trim();
-            
-            if (!secretKey) {
+        function generateCode() {
+            const key = document.getElementById('secretKey').value.trim();
+            if (!key) {
                 alert('⚠️ Please enter a secret key!');
                 return;
             }
 
-            const code = Math.floor(100000 + Math.random() * 900000).toString();
+            const code = String(Math.floor(100000 + Math.random() * 900000));
             document.getElementById('generatedCode').textContent = code;
-            document.getElementById('2faCodeDisplay').classList.remove('hidden');
+            document.getElementById('codeCard').classList.remove('hidden');
             
-            navigator.clipboard.writeText(code).then(() => {
-                showSuccessMessage('✅ Code generated and copied!');
-            }).catch(() => {
-                showSuccessMessage('✅ Code generated!');
-            });
+            navigator.clipboard.writeText(code);
+            showMessage('✅ Code generated and copied!');
 
-            addToRecent(secretKey, code);
-        });
-
-        // Copy Generated Code
-        document.getElementById('copyGeneratedBtn').addEventListener('click', function() {
-            const text = document.getElementById('generatedCode').textContent;
-            if (text && text !== '------') {
-                navigator.clipboard.writeText(text).then(() => {
-                    showSuccessMessage('✅ Copied to clipboard!');
-                }).catch(() => {
-                    showSuccessMessage('⚠️ Copy failed.');
-                });
-            }
-        });
-
-        // Add to Recent (with 2FA key)
-        function addToRecent(key, code) {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', { 
+            const time = new Date().toLocaleTimeString('en-US', { 
                 hour: '2-digit', 
                 minute: '2-digit',
                 hour12: true 
             });
             
-            recentCodes.unshift({ 
-                key: key,
-                code: code, 
-                time: timeString 
-            });
-            
-            if (recentCodes.length > 10) recentCodes.pop();
-            updateRecentList();
+            recent.unshift({ key: key, code: code, time: time });
+            if (recent.length > 10) recent.pop();
+            updateRecent();
         }
 
-        // Update Recent List (show 2FA key + code)
-        function updateRecentList() {
-            const listDiv = document.getElementById('recentList');
-            
-            if (recentCodes.length === 0) {
-                listDiv.innerHTML = '<p class="empty-state">No codes generated yet</p>';
+        function copyGenerated() {
+            const text = document.getElementById('generatedCode').textContent;
+            if (text && text !== '------') {
+                navigator.clipboard.writeText(text);
+                showMessage('✅ Copied!');
+            }
+        }
+
+        function updateRecent() {
+            const list = document.getElementById('recentList');
+            if (recent.length === 0) {
+                list.innerHTML = '<p class="empty-state">No codes generated yet</p>';
                 return;
             }
 
-            listDiv.innerHTML = recentCodes.map(item => `
+            list.innerHTML = recent.map(item => `
                 <div class="recent-item">
                     <div class="recent-key">🔑 ${item.key}</div>
                     <div class="recent-code">${item.code}</div>
@@ -672,124 +578,93 @@
             `).join('');
         }
 
-        // Toggle Recent
-        document.getElementById('recentHeader').addEventListener('click', function() {
-            recentVisible = !recentVisible;
-            const listDiv = document.getElementById('recentList');
-            const toggleBtn = document.getElementById('toggleBtn');
+        function toggleRecent() {
+            showRecent = !showRecent;
+            const list = document.getElementById('recentList');
+            const btn = document.getElementById('toggleBtn');
             
-            if (recentVisible) {
-                listDiv.classList.remove('hidden');
-                toggleBtn.textContent = 'Hide';
+            if (showRecent) {
+                list.classList.remove('hidden');
+                btn.textContent = 'Hide';
             } else {
-                listDiv.classList.add('hidden');
-                toggleBtn.textContent = 'Show';
+                list.classList.add('hidden');
+                btn.textContent = 'Show';
             }
-        });
+        }
 
-        // Mail Box - Extract Email
-        document.getElementById('tokenInput').addEventListener('input', function() {
-            const token = this.value.trim();
+        function extractEmail() {
+            const token = document.getElementById('tokenInput').value.trim();
             
             if (!token) {
-                document.getElementById('emailDisplay').classList.add('hidden');
-                document.getElementById('codeDisplay').classList.add('hidden');
-                stopMailCheck();
+                document.getElementById('emailCard').classList.add('hidden');
+                document.getElementById('verifyCard').classList.add('hidden');
+                if (checkInterval) clearInterval(checkInterval);
                 return;
             }
 
             const parts = token.split('|');
             if (parts.length > 0 && parts[0].includes('@')) {
-                const email = parts[0];
-                document.getElementById('extractedEmail').textContent = email;
-                document.getElementById('emailDisplay').classList.remove('hidden');
-                document.getElementById('codeDisplay').classList.remove('hidden');
-                startMailCheck();
+                document.getElementById('extractedEmail').textContent = parts[0];
+                document.getElementById('emailCard').classList.remove('hidden');
+                document.getElementById('verifyCard').classList.remove('hidden');
+                startCheck();
             }
-        });
+        }
 
-        // Start Mail Check
-        function startMailCheck() {
-            stopMailCheck();
+        function startCheck() {
+            if (checkInterval) clearInterval(checkInterval);
+            
             document.getElementById('verificationCode').textContent = 'Waiting... ⏳';
             document.getElementById('verificationCode').classList.add('waiting');
-            document.getElementById('copyCodeBtn').disabled = true;
+            document.getElementById('copyVerifyBtn').disabled = true;
             
-            mailCheckInterval = setInterval(() => {
+            checkInterval = setInterval(() => {
                 if (Math.random() < 0.2) {
-                    const code = Math.floor(100000 + Math.random() * 900000).toString();
-                    displayVerificationCode(code);
+                    const code = String(Math.floor(100000 + Math.random() * 900000));
+                    document.getElementById('verificationCode').textContent = code;
+                    document.getElementById('verificationCode').classList.remove('waiting');
+                    document.getElementById('copyVerifyBtn').disabled = false;
+                    showMessage('✅ Code received!');
+                    clearInterval(checkInterval);
                 }
             }, 2000);
         }
 
-        // Stop Mail Check
-        function stopMailCheck() {
-            if (mailCheckInterval) {
-                clearInterval(mailCheckInterval);
-                mailCheckInterval = null;
-            }
-        }
-
-        // Display Verification Code
-        function displayVerificationCode(code) {
-            stopMailCheck();
-            document.getElementById('verificationCode').textContent = code;
-            document.getElementById('verificationCode').classList.remove('waiting');
-            document.getElementById('copyCodeBtn').disabled = false;
-            showSuccessMessage('✅ Verification code received!');
-        }
-
-        // Clear Mail Data
-        document.getElementById('clearBtn').addEventListener('click', function() {
+        function clearMail() {
             document.getElementById('tokenInput').value = '';
-            document.getElementById('emailDisplay').classList.add('hidden');
-            document.getElementById('codeDisplay').classList.add('hidden');
-            stopMailCheck();
-        });
+            document.getElementById('emailCard').classList.add('hidden');
+            document.getElementById('verifyCard').classList.add('hidden');
+            if (checkInterval) clearInterval(checkInterval);
+        }
 
-        // Copy Email
-        document.getElementById('copyEmailBtn').addEventListener('click', function() {
+        function copyEmail() {
             const text = document.getElementById('extractedEmail').textContent;
             if (text) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showSuccessMessage('✅ Copied!');
-                });
+                navigator.clipboard.writeText(text);
+                showMessage('✅ Copied!');
             }
-        });
-
-        // Copy Verification Code
-        document.getElementById('copyCodeBtn').addEventListener('click', function() {
-            const text = document.getElementById('verificationCode').textContent;
-            if (text && text !== 'Waiting... ⏳') {
-                navigator.clipboard.writeText(text).then(() => {
-                    showSuccessMessage('✅ Copied!');
-                });
-            }
-        });
-
-        // Success Message
-        function showSuccessMessage(message) {
-            const existingMsg = document.querySelector('.success-message');
-            if (existingMsg) existingMsg.remove();
-
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'success-message';
-            msgDiv.textContent = message;
-            
-            const container = document.querySelector('.container');
-            container.insertBefore(msgDiv, container.firstChild);
-
-            setTimeout(() => {
-                msgDiv.style.animation = 'slideDown 0.3s ease reverse';
-                setTimeout(() => msgDiv.remove(), 300);
-            }, 2500);
         }
 
-        // Cleanup
-        window.addEventListener('beforeunload', () => {
-            stopMailCheck();
-        });
+        function copyVerify() {
+            const text = document.getElementById('verificationCode').textContent;
+            if (text && text !== 'Waiting... ⏳') {
+                navigator.clipboard.writeText(text);
+                showMessage('✅ Copied!');
+            }
+        }
+
+        function showMessage(msg) {
+            const old = document.querySelector('.success-message');
+            if (old) old.remove();
+
+            const div = document.createElement('div');
+            div.className = 'success-message';
+            div.textContent = msg;
+            
+            document.querySelector('.container').insertBefore(div, document.querySelector('.container').firstChild);
+
+            setTimeout(() => div.remove(), 2500);
+        }
     </script>
 </body>
 </html>
