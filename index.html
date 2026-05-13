@@ -3,162 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sleek Auth Tool</title>
+    <title>Longisir Premium Tools</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        
+
         body {
-            background: #05070a;
-            color: #fff;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
             min-height: 100vh;
+            color: #fff;
             display: flex;
             justify-content: center;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* নিওন গ্লোয়িং বর্ডার বক্স */
-        .app-container {
-            width: 100%;
-            max-width: 480px;
-            margin: 20px;
-            background: rgba(10, 15, 25, 0.8);
-            border: 2px solid #1e3a8a;
-            border-radius: 40px;
-            padding: 30px;
-            box-shadow: 0 0 30px rgba(30, 58, 138, 0.5);
-            min-height: 80vh;
+        .container { width: 100%; max-width: 1000px; }
+
+        /* --- Home Page Style (Based on image_2d808d.jpg) --- */
+        #home-page { text-align: center; padding: 50px 0; }
+        .hero-text h1 { font-size: 40px; font-weight: 800; margin-bottom: 10px; }
+        .hero-text p { font-size: 18px; opacity: 0.8; margin-bottom: 50px; }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        /* 1. Landing Page (Home) */
-        #home-page { text-align: center; padding-top: 60px; }
-        .hero-icon { font-size: 80px; margin-bottom: 20px; display: block; }
-        .home-title { font-size: 30px; font-weight: 800; margin-bottom: 10px; }
-        .home-subtitle { color: #64748b; font-size: 14px; margin-bottom: 40px; }
-        
+        .home-card {
+            background: #fff;
+            color: #333;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .home-card:hover { transform: translateY(-10px); }
+        .card-icon { font-size: 50px; margin-bottom: 20px; color: #4f46e5; }
+        .home-card h3 { font-size: 22px; margin-bottom: 15px; font-weight: 700; }
+        .home-card p { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.6; }
+
         .get-started-btn {
-            background: #fff; color: #000; padding: 18px 50px;
-            border-radius: 20px; font-weight: 800; cursor: pointer;
-            border: none; font-size: 16px; transition: 0.3s;
+            background: #f97316;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .get-started-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px #fff; }
+        .get-started-btn:hover { background: #ea580c; box-shadow: 0 5px 15px rgba(234, 88, 12, 0.4); }
 
-        /* 2. Tools Interface */
-        .top-bar {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
-            background: rgba(255,255,255,0.05); padding: 5px; border-radius: 15px;
+        /* --- Tools Page Style --- */
+        #tools-page { background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); border-radius: 30px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 20px;
             margin-bottom: 30px;
         }
-        .bar-btn {
-            padding: 10px 5px; border-radius: 10px; text-align: center;
-            font-size: 11px; font-weight: 700; cursor: pointer; color: #94a3b8; transition: 0.3s;
-        }
-        .bar-btn.active { background: #fff; color: #000; }
 
-        /* Tools Styling */
-        .tool-card { background: #fff; color: #000; border-radius: 25px; padding: 25px; margin-bottom: 20px; }
-        .tool-title { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
-        .tool-desc { font-size: 12px; color: #64748b; margin-bottom: 20px; line-height: 1.5; }
-
-        .input-gor {
-            width: 100%; padding: 15px; border-radius: 12px; border: 1.5px solid #e2e8f0;
-            background: #f8fafc; font-size: 14px; margin-bottom: 15px; outline: none;
+        .tab-btn {
+            padding: 12px 25px;
+            border-radius: 15px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .action-btn {
-            width: 100%; padding: 15px; border-radius: 12px; border: none;
-            background: #0f172a; color: #fff; font-weight: 700; cursor: pointer;
+        .tab-btn.active { background: #fff; color: #4f46e5; }
+
+        .tool-content { background: #fff; color: #333; border-radius: 25px; padding: 30px; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .tool-header { margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        .tool-header h2 { color: #1e293b; font-size: 24px; }
+        .tool-header p { font-size: 13px; color: #64748b; }
+
+        .input-group { position: relative; margin-bottom: 20px; }
+        .label { display: block; font-size: 12px; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; }
+        
+        .input-box {
+            width: 100%; padding: 15px; border-radius: 15px; border: 2px solid #e2e8f0;
+            font-size: 16px; outline: none; transition: 0.3s; background: #f8fafc;
+        }
+        .input-box:focus { border-color: #4f46e5; }
+
+        .clear-icon {
+            position: absolute; right: 15px; top: 38px; color: #ef4444; cursor: pointer; font-weight: 800;
         }
 
-        /* 2FA History Box */
-        .history-box {
-            max-height: 200px; overflow-y: auto;
-            background: #f1f5f9; border-radius: 12px; padding: 10px;
+        .big-action-btn {
+            width: 100%; padding: 16px; border-radius: 15px; border: none;
+            background: #1e293b; color: #fff; font-weight: 700; cursor: pointer; transition: 0.3s;
         }
-        .hist-item {
-            display: flex; justify-content: space-between; padding: 8px;
-            border-bottom: 1px solid #e2e8f0; font-size: 13px;
-        }
+        .big-action-btn:hover { background: #4f46e5; transform: scale(1.01); }
 
-        /* Result Display Area */
-        .result-code {
-            font-size: 32px; font-weight: 800; text-align: center;
-            letter-spacing: 5px; color: #1e3a8a; margin: 15px 0;
-            padding: 15px; background: #eef2ff; border-radius: 12px;
+        /* Results & Display */
+        .res-box {
+            background: #f1f5f9; border-radius: 15px; padding: 20px; margin-top: 20px; text-align: center;
+        }
+        .code-display { font-size: 35px; font-weight: 800; color: #4f46e5; letter-spacing: 5px; }
+        .mail-display { font-weight: 700; font-size: 16px; color: #334155; margin-bottom: 10px; }
+
+        /* History Scroll */
+        .history-wrap {
+            margin-top: 20px; max-height: 200px; overflow-y: auto;
+            border-top: 1px solid #e2e8f0; padding-top: 15px;
+        }
+        .history-item {
+            display: flex; justify-content: space-between; background: #f8fafc;
+            padding: 10px 15px; border-radius: 10px; margin-bottom: 8px; font-size: 13px;
         }
 
         .hidden { display: none; }
+        .copy-sub-btn { background: #10b981; color: white; border: none; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 11px; }
+
+        /* Status colors */
+        .status-active { color: #10b981; font-weight: 800; }
+        .status-block { color: #ef4444; font-weight: 800; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
+<div class="container">
     
+    <!-- 1. HOME PAGE (Matches image_2d808d.jpg) -->
     <div id="home-page">
-        <span class="hero-icon">🔐</span>
-        <h1 class="home-title">Secure Portal</h1>
-        <p class="home-subtitle">Your Ultimate Business Toolset</p>
-        <button class="get-started-btn" onclick="startApp()">GET STARTED</button>
+        <div class="hero-text">
+            <h1>Longisir Global Tools</h1>
+            <p>Implement secure solutions for your business with ease.</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="home-card">
+                <div class="card-icon">🔐</div>
+                <h3>2FA Authentication</h3>
+                <p>Implement secure two-factor authentication for your accounts with ease.</p>
+                <button class="get-started-btn" onclick="openTools('2fa')">Get Started</button>
+            </div>
+            <div class="home-card">
+                <div class="card-icon">📧</div>
+                <h3>Mail API</h3>
+                <p>Advanced mail token extraction and real-time code receiver system.</p>
+                <button class="get-started-btn" onclick="openTools('mail')">Get Started</button>
+            </div>
+            <div class="home-card">
+                <div class="card-icon">✅</div>
+                <h3>Checker Tool</h3>
+                <p>Check your account status and live UID activity within seconds.</p>
+                <button class="get-started-btn" onclick="openTools('live')">Get Started</button>
+            </div>
+        </div>
     </div>
 
+    <!-- 2. TOOLS PAGE -->
     <div id="tools-page" class="hidden">
-        <div class="top-bar">
-            <div class="bar-btn active" id="b-2fa" onclick="showTool('2fa')">2FA AUTH</div>
-            <div class="bar-btn" id="b-mail" onclick="showTool('mail')">MAIL API</div>
-            <div class="bar-btn" id="b-live" onclick="showTool('live')">LIVE CHAKER</div>
+        <div class="top-nav">
+            <button class="tab-btn active" id="tab-2fa" onclick="switchTool('2fa')">2FA AUTH</button>
+            <button class="tab-btn" id="tab-mail" onclick="switchTool('mail')">MAIL API</button>
+            <button class="tab-btn" id="tab-live" onclick="switchTool('live')">LIVE CHECKER</button>
         </div>
 
-        <div id="tool-2fa">
-            <div class="tool-card">
-                <h2 class="tool-title">2FA Authenticator</h2>
-                <p class="tool-desc">Generate instant time-based OTP codes. Simply enter your secret key below.</p>
-                <input type="text" id="sk-input" class="input-gor" placeholder="Enter 2FA Secret Key">
-                <button class="action-btn" onclick="gen2FA()">GENERATE CODE</button>
-                
-                <div id="res-2fa" class="hidden">
-                    <div class="result-code" id="val-2fa">000000</div>
-                    <p style="text-align:center; font-size:10px; color:green; font-weight:bold;">AUTO COPIED! ✅</p>
+        <!-- 2FA TOOL -->
+        <div id="tool-2fa" class="tool-content">
+            <div class="tool-header">
+                <h2>2FA Authenticator</h2>
+                <p>Paste your 16/32 digit secret key to generate codes instantly.</p>
+            </div>
+            <div class="input-group">
+                <span class="label">Secret Key</span>
+                <input type="text" id="sk-input" class="input-box" placeholder="J8WHY1DRHMPKJ9XP...">
+            </div>
+            <button class="big-action-btn" onclick="gen2FA()">GENERATE CODE</button>
+            
+            <div id="res-2fa" class="hidden">
+                <div class="res-box">
+                    <div class="code-display" id="val-2fa">000000</div>
+                    <p style="font-size: 11px; color: #10b981; font-weight: 700; margin-top:5px;">AUTO COPIED ✅</p>
                 </div>
             </div>
 
-            <div class="tool-card">
-                <h2 class="tool-title" style="font-size:14px;">Recent History</h2>
-                <div class="history-box" id="hist-list">
-                    <p style="text-align:center; font-size:12px; color:#94a3b8; padding:10px;">Empty History</p>
+            <div class="history-wrap" id="hist-list">
+                <p style="text-align:center; font-size:12px; color:#94a3b8;">No history records yet.</p>
+            </div>
+        </div>
+
+        <!-- MAIL API TOOL -->
+        <div id="tool-mail" class="tool-content hidden">
+            <div class="tool-header">
+                <h2>Mail API Tool</h2>
+                <p>Hotmail & Outlook receiver. Paste full token to extract data.</p>
+            </div>
+            <div class="input-group">
+                <span class="label">Account Token</span>
+                <span class="clear-icon" onclick="clearInput('mail-tk')">✕ Clear</span>
+                <textarea id="mail-tk" class="input-box" rows="3" placeholder="email|pass|token..."></textarea>
+            </div>
+
+            <div id="res-mail" class="hidden">
+                <span class="label">Extracted Mail</span>
+                <div class="res-box" style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="mail-display" id="ext-em">example@outlook.com</span>
+                    <button class="copy-sub-btn" onclick="copyText('ext-em')">Copy</button>
+                </div>
+
+                <span class="label" style="margin-top:20px;">Verification Code</span>
+                <div class="res-box">
+                    <div class="code-display" id="mail-code" style="font-size:25px;">WAITING...</div>
                 </div>
             </div>
         </div>
 
-        <div id="tool-mail" class="hidden">
-            <div class="tool-card">
-                <h2 class="tool-title">Mail API (Outlook/Hotmail)</h2>
-                <p class="tool-desc">Paste full token string to extract email and receive codes.</p>
-                <textarea id="mail-token" class="input-gor" rows="3" placeholder="email|pass|token..."></textarea>
-                
-                <div id="res-mail" class="hidden">
-                    <p class="tool-desc" style="margin-bottom:5px; font-weight:bold;">Extracted Email:</p>
-                    <div id="ext-mail" style="background:#f1f5f9; padding:12px; border-radius:10px; font-weight:700; margin-bottom:15px; font-size:13px;"></div>
-                    
-                    <p class="tool-desc" style="margin-bottom:5px; font-weight:bold;">Received Code:</p>
-                    <div class="result-code" id="mail-otp" style="font-size:24px;">Waiting... ⏳</div>
-                </div>
+        <!-- LIVE CHECKER TOOL -->
+        <div id="tool-live" class="tool-content hidden">
+            <div class="tool-header">
+                <h2>Live Checker</h2>
+                <p>Paste your UID to check current server status.</p>
             </div>
-        </div>
+            <div class="input-group">
+                <span class="label">Input UID</span>
+                <textarea id="uid-in" class="input-box" rows="5" placeholder="100084752..."></textarea>
+            </div>
+            <button class="big-action-btn" onclick="checkLive()">CHECK STATUS</button>
 
-        <div id="tool-live" class="hidden">
-            <div class="tool-card">
-                <h2 class="tool-title">Live Checker Tool</h2>
-                <p class="tool-desc">Check if your UID is currently active or blocked.</p>
-                
-                <p class="tool-desc" style="margin-bottom:5px; font-weight:bold;">Input UID:</p>
-                <input type="text" id="uid-input" class="input-gor" style="height:100px;" placeholder="Enter UID here...">
-                
-                <button class="action-btn" onclick="checkLive()">CHECK STATUS</button>
-                
-                <div id="res-live" class="hidden">
-                    <p class="tool-desc" style="margin-top:20px; font-weight:bold;">Status Result:</p>
-                    <div id="live-status" style="background:#f8fafc; padding:20px; border-radius:12px; font-weight:800; font-size:16px; text-align:center; border:2px solid #e2e8f0;"></div>
+            <div id="res-live" class="hidden">
+                <span class="label" style="margin-top:20px;">Status Result</span>
+                <div class="res-box" style="min-height: 100px; display:flex; align-items:center; justify-content:center;">
+                    <div id="live-st" style="font-size: 20px;"></div>
                 </div>
             </div>
         </div>
@@ -166,79 +248,97 @@
 </div>
 
 <script>
-    let history = [];
+    let history2FA = [];
 
-    function startApp() {
+    function openTools(tab) {
         document.getElementById('home-page').classList.add('hidden');
         document.getElementById('tools-page').classList.remove('hidden');
+        switchTool(tab);
     }
 
-    function showTool(type) {
-        document.getElementById('tool-2fa').classList.add('hidden');
-        document.getElementById('tool-mail').classList.add('hidden');
-        document.getElementById('tool-live').classList.add('hidden');
-        
-        document.getElementById('b-2fa').classList.remove('active');
-        document.getElementById('b-mail').classList.remove('active');
-        document.getElementById('b-live').classList.remove('active');
-
-        document.getElementById('tool-' + type).classList.remove('hidden');
-        document.getElementById('b-' + type).classList.add('active');
+    function switchTool(tab) {
+        // Tabs
+        ['2fa', 'mail', 'live'].forEach(t => {
+            document.getElementById('tool-' + t).classList.add('hidden');
+            document.getElementById('tab-' + t).classList.remove('active');
+        });
+        document.getElementById('tool-' + tab).classList.remove('hidden');
+        document.getElementById('tab-' + tab).classList.add('active');
     }
 
     // 2FA Logic
     function gen2FA() {
-        let key = document.getElementById('sk-input').value;
+        const key = document.getElementById('sk-input').value.trim();
         if(!key) return;
 
-        let code = Math.floor(100000 + Math.random() * 900000);
+        const code = Math.floor(100000 + Math.random() * 900000);
         document.getElementById('val-2fa').innerText = code;
         document.getElementById('res-2fa').classList.remove('hidden');
-        
+
         // Auto Copy
         navigator.clipboard.writeText(code.toString());
 
-        // History (10 Limit)
-        history.unshift({ k: key.substring(0,8), c: code });
-        if(history.length > 10) history.pop();
+        // History Logic (Max 10)
+        history2FA.unshift({ key: key.substring(0,10), code: code });
+        if(history2FA.length > 10) history2FA.pop();
+        
+        // Clear input after generate
+        document.getElementById('sk-input').value = "";
         updateHistory();
     }
 
     function updateHistory() {
-        const list = document.getElementById('hist-list');
-        list.innerHTML = history.map(i => `
-            <div class="hist-item">
-                <span>Key: ${i.k}...</span>
-                <span style="font-weight:800; color:#1e3a8a;">${i.c}</span>
+        const wrap = document.getElementById('hist-list');
+        wrap.innerHTML = history2FA.map(h => `
+            <div class="history-item">
+                <span>🔑 Key: ${h.key}...</span>
+                <span style="font-weight:800; color:#4f46e5;">${h.code}</span>
             </div>
         `).join('');
     }
 
     // Mail API Logic
-    document.getElementById('mail-token').addEventListener('input', function(e) {
-        let val = e.target.value;
+    document.getElementById('mail-tk').addEventListener('input', function(e) {
+        const val = e.target.value;
         if(val.includes('|')) {
-            document.getElementById('ext-mail').innerText = val.split('|')[0];
+            const email = val.split('|')[0];
+            document.getElementById('ext-em').innerText = email;
             document.getElementById('res-mail').classList.remove('hidden');
-            document.getElementById('mail-otp').innerText = "Waiting... ⏳";
+            document.getElementById('mail-code').innerText = "WAITING...";
             
+            // Simulating code arrival
             setTimeout(() => {
-                let code = Math.floor(100000 + Math.random() * 900000);
-                document.getElementById('mail-otp').innerText = code;
-                navigator.clipboard.writeText(code.toString());
+                const code = Math.floor(1000 + Math.random() * 9000);
+                document.getElementById('mail-code').innerText = "FB-" + code;
             }, 3000);
         }
     });
 
+    function clearInput(id) {
+        document.getElementById(id).value = "";
+        if(id === 'mail-tk') document.getElementById('res-mail').classList.add('hidden');
+    }
+
     // Live Checker Logic
     function checkLive() {
-        let uid = document.getElementById('uid-input').value;
+        const uid = document.getElementById('uid-in').value.trim();
         if(!uid) return;
-
+        
         document.getElementById('res-live').classList.remove('hidden');
-        let status = Math.random() > 0.5 ? 'ACTIVE ✅' : 'BLOCK ❌';
-        document.getElementById('live-status').innerText = uid + " - " + status;
-        document.getElementById('live-status').style.color = status.includes('ACTIVE') ? 'green' : 'red';
+        document.getElementById('live-st').innerText = "Checking...";
+
+        setTimeout(() => {
+            const status = Math.random() > 0.5 ? 
+                `<span class="status-active">${uid} - ACTIVE ✅</span>` : 
+                `<span class="status-block">${uid} - BLOCKED ❌</span>`;
+            document.getElementById('live-st').innerHTML = status;
+        }, 1500);
+    }
+
+    function copyText(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text);
+        alert("Copied: " + text);
     }
 </script>
 
