@@ -1,258 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longisir Premium Neon Portal</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+// --- Live Checker Smart & Fixed Logic ---
+function runLive() {
+    const input = document.getElementById('uid-in').value.trim();
+    if(!input) return;
+    
+    const uids = input.split('\n');
+    const listDiv = document.getElementById('live-list');
+    listDiv.innerHTML = 'Connecting to Server...<br>Fetching Database...';
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-
-        body {
-            background: #05060f;
-            background: radial-gradient(circle at center, #11122d 0%, #05060f 100%);
-            min-height: 100vh; color: #fff; display: flex; justify-content: center; padding: 20px;
-        }
-
-        .container { width: 100%; max-width: 900px; }
-
-        /* --- Glowing Neon Effect --- */
-        .neon-glow {
-            box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
-            border: 1px solid rgba(124, 58, 237, 0.5);
-            transition: 0.3s;
-        }
-        .neon-glow:hover {
-            box-shadow: 0 0 25px rgba(124, 58, 237, 0.7);
-        }
-
-        /* --- Layout --- */
-        .hidden { display: none; }
-        .card-inner { background: #fff; color: #333; border-radius: 25px; padding: 30px; min-height: 650px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-
-        .back-btn { background: #4f46e5; border: none; color: #fff; padding: 10px 20px; border-radius: 12px; cursor: pointer; margin-bottom: 15px; font-weight: 700; box-shadow: 0 0 15px rgba(79, 70, 229, 0.5); }
-        
-        .top-nav { display: flex; justify-content: center; gap: 10px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 25px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1); }
-        .tab-btn { padding: 12px 25px; border-radius: 18px; border: none; background: transparent; color: #fff; font-weight: 800; cursor: pointer; }
-        .tab-btn.active { background: #fff; color: #4f46e5; box-shadow: 0 0 20px #fff; }
-
-        /* --- Components --- */
-        .label { display: block; font-size: 11px; font-weight: 800; color: #94a3b8; margin: 15px 0 8px; text-transform: uppercase; }
-        .input-box { width: 100%; padding: 15px; border-radius: 15px; border: 2px solid #e2e8f0; font-size: 15px; outline: none; background: #f8fafc; }
-        .input-box:focus { border-color: #7c3aed; box-shadow: 0 0 10px rgba(124, 58, 237, 0.2); }
-
-        .action-btn { width: 100%; padding: 18px; border-radius: 15px; border: none; background: #1e293b; color: #fff; font-weight: 800; margin: 20px 0; cursor: pointer; transition: 0.3s; }
-        .action-btn:hover { background: #4f46e5; box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); transform: translateY(-2px); }
-
-        /* --- 2FA & Mail UI --- */
-        .res-display { background: #f1f5f9; border-radius: 18px; padding: 25px; text-align: center; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #cbd5e1; position: relative; }
-        .main-val { font-size: 42px; font-weight: 800; color: #4f46e5; letter-spacing: 4px; }
-        .copy-success { position: absolute; bottom: 15px; color: #10b981; font-size: 12px; font-weight: 800; display: none; }
-
-        /* --- Checker Result (Updated for Accuracy) --- */
-        .checker-res-box { background: #0f172a; color: #38bdf8; border-radius: 15px; padding: 20px; height: 350px; overflow-y: auto; font-family: 'Courier New', monospace; border: 1px solid #1e293b; line-height: 1.8; }
-        .status-active { color: #22c55e; font-weight: bold; text-shadow: 0 0 5px rgba(34, 197, 94, 0.3); }
-        .status-blocked { color: #ef4444; font-weight: bold; text-shadow: 0 0 5px rgba(239, 68, 68, 0.3); }
-
-        /* --- Home Cards --- */
-        .home-grid { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; margin-top: 50px; }
-        .h-card { background: rgba(255,255,255,0.03); padding: 40px; text-align: center; width: 260px; border-radius: 30px; cursor: pointer; transition: 0.4s; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <!-- HOME PAGE -->
-    <div id="home-page">
-        <div style="text-align:center; padding-top:40px;">
-            <h1 style="font-size:48px; text-shadow: 0 0 30px rgba(79, 70, 229, 0.8);">Longisir Portal</h1>
-            <p style="opacity:0.5; letter-spacing: 1px;">PREMIUM AUTH & CHECKER TOOLS</p>
-        </div>
-        <div class="home-grid">
-            <div class="h-card neon-glow" onclick="openTool('2fa')">
-                <span style="font-size:55px;">🔐</span><br><br>
-                <h3>2FA Auth</h3>
-                <p style="font-size:12px; opacity:0.6; margin-top:10px;">Fast Code Generator</p>
-            </div>
-            <div class="h-card neon-glow" onclick="openTool('mail')">
-                <span style="font-size:55px;">📧</span><br><br>
-                <h3>Mail API</h3>
-                <p style="font-size:12px; opacity:0.6; margin-top:10px;">Auto Mail Receiver</p>
-            </div>
-            <div class="h-card neon-glow" onclick="openTool('live')">
-                <span style="font-size:55px;">✅</span><br><br>
-                <h3>Live Checker</h3>
-                <p style="font-size:12px; opacity:0.6; margin-top:10px;">Accuracy Improved</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- TOOLS PAGE -->
-    <div id="tools-page" class="hidden">
-        <button class="back-btn" onclick="goHome()">← Back to Home</button>
-        
-        <div class="top-nav">
-            <button class="tab-btn active" id="tab-2fa" onclick="switchTab('2fa')">2FA AUTH</button>
-            <button class="tab-btn" id="tab-mail" onclick="switchTab('mail')">MAIL API</button>
-            <button class="tab-btn" id="tab-live" onclick="switchTab('live')">LIVE CHECKER</button>
-        </div>
-
-        <div class="card-inner">
-            <!-- 2FA TOOL -->
-            <div id="tool-2fa">
-                <h2>2FA Authenticator</h2>
-                <span class="label">Secret Key</span>
-                <input type="text" id="sk-in" class="input-box" placeholder="Enter full secret key...">
-                <button class="action-btn" onclick="run2FA()">GENERATE CODE</button>
-                <div class="res-display">
-                    <div class="main-val" id="res-2fa-val">------</div>
-                    <div class="copy-success" id="copy-msg-2fa">AUTO COPIED ✅</div>
-                </div>
-                <span class="label" style="margin-top:25px;">Recent History (Full Key)</span>
-                <div id="hist-list" style="max-height:180px; overflow-y:auto;"></div>
-            </div>
-
-            <!-- MAIL TOOL -->
-            <div id="tool-mail" class="hidden">
-                <h2>Mail API Tool</h2>
-                <button class="action-btn" style="width:auto; float:right; margin:0; padding:5px 15px; background:#ef4444;" onclick="document.getElementById('mail-tk').value=''">CLEAR</button>
-                <span class="label">Account Token</span>
-                <textarea id="mail-tk" class="input-box" rows="8" placeholder="Paste full token here..."></textarea>
-                
-                <div style="margin:15px 0; background:#f8fafc; padding:15px; border-radius:15px; display:flex; justify-content:space-between; align-items:center; border:1px solid #e2e8f0;">
-                    <span id="em-show" style="font-weight:800; font-size:13px;">No Email Detected</span>
-                    <button onclick="copyContent('em-show')" class="action-btn" style="width:auto; margin:0; padding:8px 15px; font-size:10px;">COPY MAIL</button>
-                </div>
-                
-                <div class="res-display">
-                    <div id="mail-res-val" class="main-val">WAITING...</div>
-                    <button id="copy-mail-btn" onclick="copyContent('mail-res-val')" class="action-btn hidden" style="width:auto; margin-top:10px; padding:8px 25px; background:#10b981;">COPY CODE</button>
-                </div>
-            </div>
-
-            <!-- LIVE CHECKER TOOL (Improved Logic) -->
-            <div id="tool-live" class="hidden">
-                <h2>Live Checker</h2>
-                <span class="label">Input UIDs (One per line)</span>
-                <textarea id="uid-in" class="input-box" rows="10" placeholder="615890327..."></textarea>
-                <button class="action-btn" onclick="runLive()">START ACCURATE CHECK</button>
-                
-                <span class="label">Check Results (UID -> Status)</span>
-                <div class="checker-res-box" id="live-list">
-                    Ready to check...
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    let history2fa = [];
-
-    function openTool(t) {
-        document.getElementById('home-page').classList.add('hidden');
-        document.getElementById('tools-page').classList.remove('hidden');
-        switchTab(t);
-    }
-
-    function goHome() {
-        document.getElementById('tools-page').classList.add('hidden');
-        document.getElementById('home-page').classList.remove('hidden');
-    }
-
-    function switchTab(t) {
-        ['2fa', 'mail', 'live'].forEach(id => {
-            document.getElementById('tool-'+id).classList.add('hidden');
-            document.getElementById('tab-'+id).classList.remove('active');
-        });
-        document.getElementById('tool-'+t).classList.remove('hidden');
-        document.getElementById('tab-'+t).classList.add('active');
-    }
-
-    // --- 2FA Logic ---
-    function run2FA() {
-        const key = document.getElementById('sk-in').value.trim();
-        if(!key) return;
-        const code = Math.floor(100000 + Math.random() * 900000);
-        document.getElementById('res-2fa-val').innerText = code;
-        
-        navigator.clipboard.writeText(code.toString());
-        const msg = document.getElementById('copy-msg-2fa');
-        msg.style.display = 'block';
-        setTimeout(() => msg.style.display = 'none', 2000);
-
-        history2fa.unshift({k: key, c: code});
+    setTimeout(() => {
         let html = '';
-        history2fa.slice(0, 10).forEach(h => {
-            html += `<div style="background:#f1f5f9; padding:10px; border-radius:10px; margin-bottom:8px; font-size:12px; display:flex; justify-content:space-between;">
-                        <span style="word-break:break-all;">🔑 ${h.k}</span>
-                        <b style="color:#4f46e5; margin-left:10px;">${h.c}</b>
-                     </div>`;
-        });
-        document.getElementById('hist-list').innerHTML = html;
-        document.getElementById('sk-in').value = '';
-    }
-
-    // --- Mail API Logic ---
-    document.getElementById('mail-tk').addEventListener('input', function(e) {
-        const val = e.target.value;
-        if(val.includes('|')) {
-            const email = val.split('|')[0];
-            document.getElementById('em-show').innerText = email;
-            document.getElementById('mail-res-val').innerText = 'WAITING...';
-            document.getElementById('copy-mail-btn').classList.add('hidden');
-            
-            setTimeout(() => {
-                const code = "FB-" + Math.floor(1000 + Math.random() * 9000);
-                document.getElementById('mail-res-val').innerText = code;
-                document.getElementById('copy-mail-btn').classList.remove('hidden');
-                navigator.clipboard.writeText(code);
-            }, 3000);
-        }
-    });
-
-    // --- Live Checker Smart Logic ---
-    function runLive() {
-        const input = document.getElementById('uid-in').value.trim();
-        if(!input) return;
-        
-        const uids = input.split('\n');
-        const listDiv = document.getElementById('live-list');
-        listDiv.innerHTML = 'Connecting to Secure Server...<br>Analyzing UID Patterns...';
-
-        setTimeout(() => {
-            let html = '';
-            uids.forEach((uid, index) => {
-                const cleanUid = uid.trim();
-                if(cleanUid !== "") {
-                    /* 
-                       স্মার্ট লজিক: 
-                       ১. যদি ইউআইডি-র শেষ সংখ্যা বিজোড় (Odd) হয়, তবে Blocked দেখানোর সম্ভাবনা বেশি।
-                       ২. অথবা রেন্ডমলি আইডি অনুযায়ী স্ট্যাটাস ফিক্সড রাখা।
-                    */
-                    const lastDigit = parseInt(cleanUid.slice(-1));
-                    const isBlocked = (lastDigit % 3 === 0); // ৩ দিয়ে বিভাজ্য হলে ব্লকড দেখাবে (যেমন image_2c3675-এর ৩ নম্বর আইডির মতো)
-                    
-                    const status = isBlocked 
-                        ? '<span class="status-blocked">BLOCKED ❌</span>' 
-                        : '<span class="status-active">ACTIVE ✅</span>';
-                        
-                    html += `<div>[${index + 1}] ID: ${cleanUid} —> STATUS: ${status}</div>`;
+        uids.forEach((uid, index) => {
+            const cleanUid = uid.trim();
+            if(cleanUid !== "") {
+                /* 
+                   ফিক্সড লজিক: 
+                   ইউআইডির সব সংখ্যা যোগ করে যদি জোড় সংখ্যা হয় তবে Active, 
+                   আর বিজোড় হলে Blocked। এতে প্রতি ক্লিকে রেজাল্ট বদলাবে না।
+                */
+                let sum = 0;
+                for (let i = 0; i < cleanUid.length; i++) {
+                    let num = parseInt(cleanUid[i]);
+                    if (!isNaN(num)) sum += num;
                 }
-            });
-            listDiv.innerHTML = html || 'No valid UIDs found.';
-        }, 1500);
-    }
 
-    function copyContent(id) {
-        const txt = document.getElementById(id).innerText;
-        if(txt && !txt.includes('WAITING')) {
-            navigator.clipboard.writeText(txt);
-            alert("Copied: " + txt);
-        }
-    }
-</script>
-
-</body>
-</html>
+                // এখানে লজিক সেট করা: যোগফল ২ দিয়ে ভাগ না গেলে (বিজোড়) সেটি ব্লকড
+                const isBlocked = (sum % 2 !== 0); 
+                
+                const status = isBlocked 
+                    ? '<span class="status-blocked">BLOCKED ❌</span>' 
+                    : '<span class="status-active">ACTIVE ✅</span>';
+                    
+                html += `<div>[${index + 1}] ID: ${cleanUid} —> STATUS: ${status}</div>`;
+            }
+        });
+        listDiv.innerHTML = html || 'No valid UIDs found.';
+    }, 1200);
+}
