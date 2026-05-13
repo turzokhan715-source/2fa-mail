@@ -3,222 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sleek Auth - Ultra Premium</title>
+    <title>Neon Auth - 3D Edition</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        
+        /* পুরো স্ক্রিনকে ঘিরে রাখা গ্লোয়িং বর্ডার */
+        html {
+            height: 100%;
+            border: 5px solid #1e3a8a;
+            box-shadow: inset 0 0 20px #1e3a8a, 0 0 20px #1e3a8a;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #05070a;
-            background: radial-gradient(circle at 50% -20%, #1e3a8a33 0%, #05070a 100%);
+            background: #000;
+            background: radial-gradient(circle at center, #0a1128 0%, #000 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             padding: 20px;
             color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
 
-        .container { width: 100%; max-width: 440px; }
+        .container { width: 100%; max-width: 450px; }
 
-        /* 1. Unique Premium Header */
-        .header {
-            text-align: center;
-            padding: 50px 0 30px 0;
-        }
-        .header h1 { 
-            font-size: 34px; 
-            font-weight: 800; 
-            background: linear-gradient(135deg, #fff 0%, #64748b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-        .header p { font-size: 14px; color: #94a3b8; letter-spacing: 3px; text-transform: uppercase; }
-
-        /* Navigation - Glass effect */
-        .top-nav { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 6px;
+        /* 1. 3D Glass Box Header */
+        .header-3d {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            transform: perspective(1000px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 15px rgba(30, 58, 138, 0.5);
+        }
+        .header-3d h1 { 
+            font-size: 32px; 
+            font-weight: 800; 
+            color: #fff;
+            text-shadow: 0 0 15px #1e3a8a;
+            margin-bottom: 5px;
+        }
+        .header-3d p { font-size: 14px; color: #64748b; letter-spacing: 2px; }
+
+        /* Navigation */
+        .top-nav { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px;
+            background: rgba(255,255,255,0.05); padding: 5px; border-radius: 15px;
         }
         .nav-btn {
-            padding: 14px;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            color: #94a3b8;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 12px; border-radius: 12px; text-align: center; cursor: pointer;
+            font-weight: 600; color: #94a3b8; transition: 0.3s;
         }
-        .nav-btn.active { 
-            background: #ffffff; 
-            color: #000;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
+        .nav-btn.active { background: #fff; color: #000; box-shadow: 0 0 15px #fff; }
 
-        /* Premium White Card */
+        /* Glowing White Card */
         .card {
-            background: rgba(255, 255, 255, 1);
-            border-radius: 28px;
-            padding: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(30, 58, 138, 0.3); /* বক্স জ্বলবে */
             margin-bottom: 20px;
-            color: #0f172a;
-            position: relative;
-            overflow: hidden;
+            color: #000;
         }
 
-        .label { 
-            font-size: 11px; 
-            font-weight: 800; 
-            color: #94a3b8; 
-            margin-bottom: 10px; 
-            text-transform: uppercase; 
-            display: flex;
-            justify-content: space-between;
-        }
-        
         .input-box {
-            width: 100%; 
-            padding: 16px; 
-            border-radius: 16px; 
-            border: 1.5px solid #f1f5f9;
-            background: #f8fafc; 
-            color: #0f172a; 
-            font-size: 15px; 
-            outline: none; 
-            margin-bottom: 20px;
-            transition: 0.3s;
+            width: 100%; padding: 15px; border-radius: 12px; border: 1.5px solid #e2e8f0;
+            font-size: 15px; outline: none; margin-bottom: 15px;
         }
-        .input-box:focus { border-color: #1e3a8a; background: #fff; }
 
         .action-btn {
-            background: #0f172a; 
-            color: #fff; 
-            border: none; 
-            padding: 18px;
-            border-radius: 18px; 
-            width: 100%; 
-            font-weight: 700; 
-            cursor: pointer; 
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            background: #000; color: #fff; border: none; padding: 16px;
+            border-radius: 12px; width: 100%; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s;
         }
-        .action-btn:hover { background: #1e3a8a; transform: translateY(-2px); }
+        .action-btn:hover { background: #1e3a8a; box-shadow: 0 0 20px #1e3a8a; }
 
-        /* Code Result Area */
-        .result-wrap {
-            margin-top: 20px;
-            animation: slideIn 0.5s ease-out;
+        /* 2. Scrollable History Box */
+        .history-container {
+            max-height: 300px; /* নির্দিষ্ট উচ্চতা */
+            overflow-y: auto; /* স্ক্রলবার আসবে */
+            padding-right: 5px;
         }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* সুন্দর স্ক্রলবার স্টাইল */
+        .history-container::-webkit-scrollbar { width: 5px; }
+        .history-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        .history-item {
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between;
+        }
 
         .code-area {
-            background: #f1f5f9; 
-            padding: 25px; 
-            border-radius: 20px; 
-            font-size: 42px; 
-            font-weight: 800; 
-            color: #1e3a8a; 
-            letter-spacing: 8px;
-            text-align: center; 
-            border: 2px solid #e2e8f0;
-            position: relative;
+            background: #f1f5f9; padding: 20px; border-radius: 15px; margin-top: 15px;
+            font-size: 38px; font-weight: 800; color: #1e3a8a; letter-spacing: 6px;
+            text-align: center; border: 2px dashed #1e3a8a; position: relative;
         }
-
-        .copy-badge {
-            font-size: 10px;
-            background: #22c55e;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            display: none;
-        }
-
-        /* History List */
-        .history-item {
-            background: #f8fafc;
-            border: 1px solid #f1f5f9;
-            border-radius: 16px;
-            padding: 15px;
-            margin-top: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-        }
-        .history-item:hover { border-color: #cbd5e1; }
-        .history-key { font-size: 12px; color: #64748b; font-weight: 500; }
-        .history-code { font-size: 18px; font-weight: 700; color: #0f172a; }
 
         .hidden { display: none; }
-        .clear-link { color: #ef4444; cursor: pointer; text-decoration: none; }
+        .clear-link { float: right; color: #ef4444; font-size: 11px; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <h1>Sleek Auth</h1>
-        <p>Premium Protection</p>
+    <div class="header-3d">
+        <h1>🔐 Secure Portal</h1>
+        <p>Your instant auth tool</p>
     </div>
 
     <div class="top-nav">
-        <div class="nav-btn active" id="tab-2fa" onclick="switchTab('2fa')">2FA Authenticator</div>
-        <div class="nav-btn" id="tab-mail" onclick="switchTab('mail')">Mail Extractor</div>
+        <div class="nav-btn active" id="t-2fa" onclick="tab('2fa')">2FA AUTH</div>
+        <div class="nav-btn" id="t-mail" onclick="tab('mail')">MAIL BOX</div>
     </div>
 
-    <div id="section-2fa">
+    <div id="s-2fa">
         <div class="card">
-            <span class="label">Secret Key</span>
-            <input type="text" id="sk" class="input-box" placeholder="Enter key to generate...">
-            <button class="action-btn" onclick="generate2FA()">
-                <span>⚡</span> Generate & Copy
-            </button>
+            <span style="font-size:11px; font-weight:800; color:#94a3b8; display:block; margin-bottom:8px;">SECRET KEY</span>
+            <input type="text" id="sk" class="input-box" placeholder="Paste key here...">
+            <button class="action-btn" onclick="gen()">⚡ Generate & Auto Copy</button>
             
-            <div id="wrap-2fa" class="result-wrap hidden">
-                <div class="code-area">
-                    <span id="val-2fa">000000</span>
-                    <span id="badge-2fa" class="copy-badge">COPIED</span>
-                </div>
+            <div id="res-2fa" class="hidden">
+                <div class="code-area" id="val-2fa">000000</div>
             </div>
         </div>
 
-        <div class="card" style="padding: 20px 25px;">
-            <span class="label">Recent History <span>20 Limit</span></span>
-            <div id="list-history">
-                <p style="text-align:center; color:#cbd5e1; font-size:13px; margin: 10px 0;">No active history</p>
+        <div class="card">
+            <span style="font-size:11px; font-weight:800; color:#94a3b8; display:block; margin-bottom:15px;">📋 RECENT HISTORY (MAX 20)</span>
+            <div class="history-container" id="histList">
+                <p style="text-align:center; color:#94a3b8; font-size:12px;">No history yet</p>
             </div>
         </div>
     </div>
 
-    <div id="section-mail" class="hidden">
+    <div id="s-mail" class="hidden">
         <div class="card">
-            <span class="label">Account Token <a class="clear-link" onclick="clearMail()">Clear</a></span>
+            <span class="clear-link" onclick="clearM()">✕ Clear</span>
+            <span style="font-size:11px; font-weight:800; color:#94a3b8; display:block; margin-bottom:8px;">ACCOUNT TOKEN</span>
             <textarea id="tk" class="input-box" rows="3" placeholder="email|pass|token..."></textarea>
             
-            <div id="wrap-mail" class="result-wrap hidden">
-                <span class="label">Target Email</span>
-                <div id="ext-email" style="background:#f1f5f9; padding:15px; border-radius:12px; font-weight:700; margin-bottom:20px; font-size:14px; border:1px solid #e2e8f0;"></div>
-                
-                <span class="label">Verification Code</span>
-                <div class="code-area">
-                    <span id="val-mail" style="font-size: 28px; letter-spacing: 4px;">Waiting...</span>
-                    <span id="badge-mail" class="copy-badge">COPIED</span>
-                </div>
+            <div id="res-mail" class="hidden">
+                <span style="font-size:11px; font-weight:800; color:#94a3b8; display:block; margin-bottom:5px;">EXTRACTED EMAIL</span>
+                <div id="ext-em" style="background:#f1f5f9; padding:12px; border-radius:10px; font-weight:700; margin-bottom:15px; font-size:13px;"></div>
+                <div class="code-area" id="val-mail" style="font-size:24px;">Waiting... ⏳</div>
             </div>
         </div>
     </div>
@@ -227,69 +159,54 @@
 <script>
     let history = [];
 
-    function switchTab(tab) {
-        document.getElementById('section-2fa').classList.toggle('hidden', tab !== '2fa');
-        document.getElementById('section-mail').classList.toggle('hidden', tab !== 'mail');
-        document.getElementById('tab-2fa').classList.toggle('active', tab === '2fa');
-        document.getElementById('tab-mail').classList.toggle('active', tab === 'mail');
+    function tab(x) {
+        document.getElementById('s-2fa').classList.toggle('hidden', x !== '2fa');
+        document.getElementById('s-mail').classList.toggle('hidden', x !== 'mail');
+        document.getElementById('t-2fa').classList.toggle('active', x === '2fa');
+        document.getElementById('t-mail').classList.toggle('active', x === 'mail');
     }
 
-    function generate2FA() {
-        const key = document.getElementById('sk').value;
-        if(!key) return;
+    function gen() {
+        const k = document.getElementById('sk').value;
+        if(!k) return;
+        const c = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('val-2fa').innerText = c;
+        document.getElementById('res-2fa').classList.remove('hidden');
+        
+        // Auto Copy
+        navigator.clipboard.writeText(c);
 
-        const code = Math.floor(100000 + Math.random() * 900000);
-        document.getElementById('val-2fa').innerText = code;
-        document.getElementById('wrap-2fa').classList.remove('hidden');
-
-        // --- AUTO COPY LOGIC ---
-        copyToClipboard(code, 'badge-2fa');
-
-        // Add to history
-        history.unshift({ key: key.substring(0,15), code });
+        // History Management
+        history.unshift({ k: k.substring(0,10), c });
         if(history.length > 20) history.pop();
-        updateHistory();
+        updateH();
     }
 
-    function updateHistory() {
-        const list = document.getElementById('list-history');
-        list.innerHTML = history.map(item => `
+    function updateH() {
+        const l = document.getElementById('histList');
+        l.innerHTML = history.map(i => `
             <div class="history-item">
-                <div class="history-key">🔑 ${item.key}...</div>
-                <div class="history-code">${item.code}</div>
+                <span style="font-size:11px; color:#64748b;">Key: ${i.k}...</span>
+                <span style="font-weight:700; color:#1e3a8a;">${i.c}</span>
             </div>
         `).join('');
     }
 
-    // Mail Extractor Logic
     document.getElementById('tk').addEventListener('input', function(e) {
-        const val = e.target.value;
-        if(val.includes('|')) {
-            document.getElementById('ext-email').innerText = val.split('|')[0];
-            document.getElementById('wrap-mail').classList.remove('hidden');
-            
-            // Simulation
+        if(e.target.value.includes('|')) {
+            document.getElementById('ext-em').innerText = e.target.value.split('|')[0];
+            document.getElementById('res-mail').classList.remove('hidden');
             setTimeout(() => {
-                const code = Math.floor(100000 + Math.random() * 900000);
-                const el = document.getElementById('val-mail');
-                el.innerText = code;
-                copyToClipboard(code, 'badge-mail');
+                const c = Math.floor(100000 + Math.random() * 900000);
+                document.getElementById('val-mail').innerText = c;
+                navigator.clipboard.writeText(c);
             }, 2500);
         }
     });
 
-    function copyToClipboard(text, badgeId) {
-        navigator.clipboard.writeText(text).then(() => {
-            const badge = document.getElementById(badgeId);
-            badge.style.display = 'block';
-            setTimeout(() => { badge.style.display = 'none'; }, 2000);
-        });
-    }
-
-    function clearMail() {
+    function clearM() {
         document.getElementById('tk').value = "";
-        document.getElementById('wrap-mail').classList.add('hidden');
-        document.getElementById('val-mail').innerText = "Waiting...";
+        document.getElementById('res-mail').classList.add('hidden');
     }
 </script>
 
