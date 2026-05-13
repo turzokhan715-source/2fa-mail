@@ -18,229 +18,162 @@
             padding: 20px;
         }
 
-        .container { width: 100%; max-width: 1000px; }
+        .container { width: 100%; max-width: 900px; }
 
-        /* --- Home Page Style (Based on image_2d808d.jpg) --- */
-        #home-page { text-align: center; padding: 50px 0; }
-        .hero-text h1 { font-size: 40px; font-weight: 800; margin-bottom: 10px; }
-        .hero-text p { font-size: 18px; opacity: 0.8; margin-bottom: 50px; }
+        /* --- Home Page (image_2d808d.jpg style) --- */
+        #home-page { text-align: center; padding: 40px 0; animation: slideIn 0.5s; }
+        .hero-text h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 800; margin-bottom: 10px; }
+        .hero-text p { font-size: 16px; opacity: 0.8; margin-bottom: 40px; }
 
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .home-card {
-            background: #fff;
-            color: #333;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-
-        .home-card:hover { transform: translateY(-10px); }
-        .card-icon { font-size: 50px; margin-bottom: 20px; color: #4f46e5; }
-        .home-card h3 { font-size: 22px; margin-bottom: 15px; font-weight: 700; }
-        .home-card p { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.6; }
-
-        .get-started-btn {
-            background: #f97316;
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .get-started-btn:hover { background: #ea580c; box-shadow: 0 5px 15px rgba(234, 88, 12, 0.4); }
-
-        /* --- Tools Page Style --- */
-        #tools-page { background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); border-radius: 30px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .home-card { background: #fff; color: #333; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: 0.3s; text-align: center; }
+        .home-card:hover { transform: translateY(-5px); }
+        .card-icon { font-size: 40px; margin-bottom: 15px; display: block; }
+        .home-card h3 { margin-bottom: 10px; font-size: 20px; }
+        .home-card p { font-size: 13px; color: #666; margin-bottom: 20px; }
         
-        .top-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-        }
+        .get-started-btn { background: #f97316; color: #fff; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 700; cursor: pointer; }
 
-        .tab-btn {
-            padding: 12px 25px;
-            border-radius: 15px;
-            border: none;
-            background: transparent;
-            color: #fff;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        /* --- Tools Page (image_2d1ab9.png style) --- */
+        #tools-page { background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(15px); border-radius: 30px; padding: 25px; border: 1px solid rgba(255,255,255,0.1); width: 100%; }
+        
+        /* Back to Home Button */
+        .back-nav { margin-bottom: 15px; }
+        .back-btn { background: rgba(255,255,255,0.15); border: none; color: #fff; padding: 8px 15px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        .back-btn:hover { background: #ef4444; }
 
+        .top-nav { display: flex; justify-content: center; gap: 10px; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 20px; margin-bottom: 25px; }
+        .tab-btn { padding: 10px 20px; border-radius: 15px; border: none; background: transparent; color: #fff; font-weight: 700; cursor: pointer; font-size: 12px; text-transform: uppercase; }
         .tab-btn.active { background: #fff; color: #4f46e5; }
 
-        .tool-content { background: #fff; color: #333; border-radius: 25px; padding: 30px; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .tool-header { margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-        .tool-header h2 { color: #1e293b; font-size: 24px; }
+        /* Fixed White Container */
+        .tool-content { background: #fff; color: #333; border-radius: 25px; padding: 30px; min-height: 500px; }
+        .tool-header { margin-bottom: 20px; }
+        .tool-header h2 { font-size: 24px; color: #1e293b; }
         .tool-header p { font-size: 13px; color: #64748b; }
 
-        .input-group { position: relative; margin-bottom: 20px; }
-        .label { display: block; font-size: 12px; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; }
-        
-        .input-box {
-            width: 100%; padding: 15px; border-radius: 15px; border: 2px solid #e2e8f0;
-            font-size: 16px; outline: none; transition: 0.3s; background: #f8fafc;
-        }
+        .input-group { position: relative; margin-top: 15px; }
+        .label { display: block; font-size: 11px; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; }
+        .input-box { width: 100%; padding: 15px; border-radius: 12px; border: 1.5px solid #e2e8f0; font-size: 15px; outline: none; background: #f8fafc; transition: 0.3s; }
         .input-box:focus { border-color: #4f46e5; }
+        
+        .clear-icon { position: absolute; right: 15px; top: 35px; color: #ef4444; cursor: pointer; font-weight: 800; font-size: 12px; }
 
-        .clear-icon {
-            position: absolute; right: 15px; top: 38px; color: #ef4444; cursor: pointer; font-weight: 800;
-        }
+        .action-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; background: #1e293b; color: #fff; font-weight: 700; margin: 20px 0; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+        .action-btn:hover { background: #4f46e5; }
 
-        .big-action-btn {
-            width: 100%; padding: 16px; border-radius: 15px; border: none;
-            background: #1e293b; color: #fff; font-weight: 700; cursor: pointer; transition: 0.3s;
-        }
-        .big-action-btn:hover { background: #4f46e5; transform: scale(1.01); }
+        /* রেজাল্ট বক্স সব সময় ফিক্সড থাকবে */
+        .fixed-res-box { background: #f1f5f9; border-radius: 15px; padding: 20px; text-align: center; min-height: 100px; display: flex; flex-direction: column; justify-content: center; }
+        .res-val { font-size: 32px; font-weight: 800; color: #4f46e5; letter-spacing: 4px; }
+        .copy-tag { font-size: 10px; color: #10b981; font-weight: 800; margin-top: 5px; visibility: hidden; }
+        .copy-tag.show { visibility: visible; }
 
-        /* Results & Display */
-        .res-box {
-            background: #f1f5f9; border-radius: 15px; padding: 20px; margin-top: 20px; text-align: center;
-        }
-        .code-display { font-size: 35px; font-weight: 800; color: #4f46e5; letter-spacing: 5px; }
-        .mail-display { font-weight: 700; font-size: 16px; color: #334155; margin-bottom: 10px; }
-
-        /* History Scroll */
-        .history-wrap {
-            margin-top: 20px; max-height: 200px; overflow-y: auto;
-            border-top: 1px solid #e2e8f0; padding-top: 15px;
-        }
-        .history-item {
-            display: flex; justify-content: space-between; background: #f8fafc;
-            padding: 10px 15px; border-radius: 10px; margin-bottom: 8px; font-size: 13px;
-        }
+        /* History Box */
+        .history-section { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+        .history-list { max-height: 120px; overflow-y: auto; }
+        .history-item { display: flex; justify-content: space-between; padding: 10px; background: #f8fafc; border-radius: 10px; margin-bottom: 5px; font-size: 12px; }
 
         .hidden { display: none; }
-        .copy-sub-btn { background: #10b981; color: white; border: none; padding: 5px 12px; border-radius: 8px; cursor: pointer; font-size: 11px; }
-
-        /* Status colors */
-        .status-active { color: #10b981; font-weight: 800; }
-        .status-block { color: #ef4444; font-weight: 800; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
 <div class="container">
     
-    <!-- 1. HOME PAGE (Matches image_2d808d.jpg) -->
+    <!-- HOME PAGE -->
     <div id="home-page">
         <div class="hero-text">
-            <h1>Longisir Global Tools</h1>
-            <p>Implement secure solutions for your business with ease.</p>
+            <h1>Longisir Business Portal</h1>
+            <p>Access your professional authentication and API tools in one place.</p>
         </div>
-        
         <div class="card-grid">
             <div class="home-card">
-                <div class="card-icon">🔐</div>
-                <h3>2FA Authentication</h3>
-                <p>Implement secure two-factor authentication for your accounts with ease.</p>
-                <button class="get-started-btn" onclick="openTools('2fa')">Get Started</button>
+                <span class="card-icon">🔐</span>
+                <h3>2FA Auth</h3>
+                <p>Generate secure codes instantly for your accounts.</p>
+                <button class="get-started-btn" onclick="openTool('2fa')">Get Started</button>
             </div>
             <div class="home-card">
-                <div class="card-icon">📧</div>
+                <span class="card-icon">📧</span>
                 <h3>Mail API</h3>
-                <p>Advanced mail token extraction and real-time code receiver system.</p>
-                <button class="get-started-btn" onclick="openTools('mail')">Get Started</button>
+                <p>Extract and receive mail codes with high speed.</p>
+                <button class="get-started-btn" onclick="openTool('mail')">Get Started</button>
             </div>
             <div class="home-card">
-                <div class="card-icon">✅</div>
-                <h3>Checker Tool</h3>
-                <p>Check your account status and live UID activity within seconds.</p>
-                <button class="get-started-btn" onclick="openTools('live')">Get Started</button>
+                <span class="card-icon">✅</span>
+                <h3>Live Checker</h3>
+                <p>Verify UID status and account activity quickly.</p>
+                <button class="get-started-btn" onclick="openTool('live')">Get Started</button>
             </div>
         </div>
     </div>
 
-    <!-- 2. TOOLS PAGE -->
+    <!-- TOOLS PAGE -->
     <div id="tools-page" class="hidden">
+        <div class="back-nav">
+            <button class="back-btn" onclick="goHome()">← Back to Home</button>
+        </div>
+
         <div class="top-nav">
-            <button class="tab-btn active" id="tab-2fa" onclick="switchTool('2fa')">2FA AUTH</button>
-            <button class="tab-btn" id="tab-mail" onclick="switchTool('mail')">MAIL API</button>
-            <button class="tab-btn" id="tab-live" onclick="switchTool('live')">LIVE CHECKER</button>
+            <button class="tab-btn active" id="tab-2fa" onclick="switchTab('2fa')">2FA AUTH</button>
+            <button class="tab-btn" id="tab-mail" onclick="switchTab('mail')">MAIL API</button>
+            <button class="tab-btn" id="tab-live" onclick="switchTab('live')">LIVE CHECKER</button>
         </div>
 
-        <!-- 2FA TOOL -->
-        <div id="tool-2fa" class="tool-content">
+        <div class="tool-content">
+            <!-- Header (Dynamic) -->
             <div class="tool-header">
-                <h2>2FA Authenticator</h2>
-                <p>Paste your 16/32 digit secret key to generate codes instantly.</p>
+                <h2 id="tool-title">2FA Authenticator</h2>
+                <p id="tool-desc">Paste your secret key to generate codes instantly.</p>
             </div>
-            <div class="input-group">
-                <span class="label">Secret Key</span>
-                <input type="text" id="sk-input" class="input-box" placeholder="J8WHY1DRHMPKJ9XP...">
-            </div>
-            <button class="big-action-btn" onclick="gen2FA()">GENERATE CODE</button>
-            
-            <div id="res-2fa" class="hidden">
-                <div class="res-box">
-                    <div class="code-display" id="val-2fa">000000</div>
-                    <p style="font-size: 11px; color: #10b981; font-weight: 700; margin-top:5px;">AUTO COPIED ✅</p>
+
+            <!-- Input (Dynamic) -->
+            <div id="input-area">
+                <!-- 2FA Input -->
+                <div id="in-2fa">
+                    <div class="input-group">
+                        <span class="label">Secret Key</span>
+                        <input type="text" id="sk-input" class="input-box" placeholder="J8WHY1DRHMPKJ9XP...">
+                    </div>
+                    <button class="action-btn" onclick="run2FA()">Generate Code</button>
+                </div>
+
+                <!-- Mail Input -->
+                <div id="in-mail" class="hidden">
+                    <div class="input-group">
+                        <span class="label">Account Token</span>
+                        <span class="clear-icon" onclick="clearMail()">✕ Clear</span>
+                        <textarea id="mail-tk" class="input-box" rows="2" placeholder="email|pass|token..."></textarea>
+                    </div>
+                    <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:10px; border-radius:10px; border:1px dashed #ccc;">
+                        <span id="mail-display" style="font-size:13px; font-weight:700; color:#444;">No Email Found</span>
+                        <button onclick="copyMail()" style="background:#4f46e5; color:#fff; border:none; padding:4px 10px; border-radius:5px; font-size:10px; cursor:pointer;">Copy</button>
+                    </div>
+                    <div style="height:20px"></div>
+                </div>
+
+                <!-- Live Input -->
+                <div id="in-live" class="hidden">
+                    <div class="input-group">
+                        <span class="label">Input UID</span>
+                        <textarea id="uid-input" class="input-box" rows="3" placeholder="1000845..."></textarea>
+                    </div>
+                    <button class="action-btn" onclick="runLive()">Check Status</button>
                 </div>
             </div>
 
-            <div class="history-wrap" id="hist-list">
-                <p style="text-align:center; font-size:12px; color:#94a3b8;">No history records yet.</p>
-            </div>
-        </div>
-
-        <!-- MAIL API TOOL -->
-        <div id="tool-mail" class="tool-content hidden">
-            <div class="tool-header">
-                <h2>Mail API Tool</h2>
-                <p>Hotmail & Outlook receiver. Paste full token to extract data.</p>
-            </div>
-            <div class="input-group">
-                <span class="label">Account Token</span>
-                <span class="clear-icon" onclick="clearInput('mail-tk')">✕ Clear</span>
-                <textarea id="mail-tk" class="input-box" rows="3" placeholder="email|pass|token..."></textarea>
+            <!-- Fixed Result Area (Always visible like image_2d1ab9.png) -->
+            <div class="fixed-res-box">
+                <div class="res-val" id="main-result">------</div>
+                <div class="copy-tag" id="copy-status">AUTO COPIED ✅</div>
             </div>
 
-            <div id="res-mail" class="hidden">
-                <span class="label">Extracted Mail</span>
-                <div class="res-box" style="display:flex; justify-content:space-between; align-items:center;">
-                    <span class="mail-display" id="ext-em">example@outlook.com</span>
-                    <button class="copy-sub-btn" onclick="copyText('ext-em')">Copy</button>
-                </div>
-
-                <span class="label" style="margin-top:20px;">Verification Code</span>
-                <div class="res-box">
-                    <div class="code-display" id="mail-code" style="font-size:25px;">WAITING...</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- LIVE CHECKER TOOL -->
-        <div id="tool-live" class="tool-content hidden">
-            <div class="tool-header">
-                <h2>Live Checker</h2>
-                <p>Paste your UID to check current server status.</p>
-            </div>
-            <div class="input-group">
-                <span class="label">Input UID</span>
-                <textarea id="uid-in" class="input-box" rows="5" placeholder="100084752..."></textarea>
-            </div>
-            <button class="big-action-btn" onclick="checkLive()">CHECK STATUS</button>
-
-            <div id="res-live" class="hidden">
-                <span class="label" style="margin-top:20px;">Status Result</span>
-                <div class="res-box" style="min-height: 100px; display:flex; align-items:center; justify-content:center;">
-                    <div id="live-st" style="font-size: 20px;"></div>
+            <!-- History (Only for 2FA) -->
+            <div id="hist-area" class="history-section">
+                <span class="label">History</span>
+                <div class="history-list" id="hist-list">
+                    <p style="text-align:center; color:#ccc; font-size:11px;">No records yet</p>
                 </div>
             </div>
         </div>
@@ -248,97 +181,114 @@
 </div>
 
 <script>
-    let history2FA = [];
+    let history = [];
+    let currentTab = '2fa';
 
-    function openTools(tab) {
+    function openTool(name) {
         document.getElementById('home-page').classList.add('hidden');
         document.getElementById('tools-page').classList.remove('hidden');
-        switchTool(tab);
+        switchTab(name);
     }
 
-    function switchTool(tab) {
-        // Tabs
+    function goHome() {
+        document.getElementById('tools-page').classList.add('hidden');
+        document.getElementById('home-page').classList.remove('hidden');
+    }
+
+    function switchTab(name) {
+        currentTab = name;
         ['2fa', 'mail', 'live'].forEach(t => {
-            document.getElementById('tool-' + t).classList.add('hidden');
-            document.getElementById('tab-' + t).classList.remove('active');
+            document.getElementById('tab-'+t).classList.remove('active');
+            document.getElementById('in-'+t).classList.add('hidden');
         });
-        document.getElementById('tool-' + tab).classList.remove('hidden');
-        document.getElementById('tab-' + tab).classList.add('active');
-    }
-
-    // 2FA Logic
-    function gen2FA() {
-        const key = document.getElementById('sk-input').value.trim();
-        if(!key) return;
-
-        const code = Math.floor(100000 + Math.random() * 900000);
-        document.getElementById('val-2fa').innerText = code;
-        document.getElementById('res-2fa').classList.remove('hidden');
-
-        // Auto Copy
-        navigator.clipboard.writeText(code.toString());
-
-        // History Logic (Max 10)
-        history2FA.unshift({ key: key.substring(0,10), code: code });
-        if(history2FA.length > 10) history2FA.pop();
+        document.getElementById('tab-'+name).classList.add('active');
+        document.getElementById('in-'+name).classList.remove('hidden');
         
-        // Clear input after generate
-        document.getElementById('sk-input').value = "";
-        updateHistory();
+        // Update Text
+        const titles = { '2fa': '2FA Authenticator', 'mail': 'Mail API Tool', 'live': 'Live Checker' };
+        const descs = { '2fa': 'Paste secret key to generate codes.', 'mail': 'Hotmail/Outlook receiver.', 'live': 'Check UID activity.' };
+        document.getElementById('tool-title').innerText = titles[name];
+        document.getElementById('tool-desc').innerText = descs[name];
+        
+        // Reset Result Box Text but keep the box
+        document.getElementById('main-result').innerText = (name === 'mail') ? 'WAITING...' : '------';
+        document.getElementById('main-result').style.color = '#4f46e5';
+        document.getElementById('copy-status').classList.remove('show');
+        
+        // Show history only for 2FA
+        document.getElementById('hist-area').style.display = (name === '2fa') ? 'block' : 'none';
     }
 
-    function updateHistory() {
-        const wrap = document.getElementById('hist-list');
-        wrap.innerHTML = history2FA.map(h => `
+    // --- 2FA LOGIC ---
+    function run2FA() {
+        let key = document.getElementById('sk-input').value.trim();
+        if(!key) return;
+        let code = Math.floor(100000 + Math.random() * 900000);
+        
+        document.getElementById('main-result').innerText = code;
+        navigator.clipboard.writeText(code.toString());
+        
+        // Show Copy Status
+        let tag = document.getElementById('copy-status');
+        tag.classList.add('show');
+        setTimeout(() => tag.classList.remove('show'), 2000);
+
+        // History
+        history.unshift({ k: key.substring(0,8), c: code });
+        if(history.length > 10) history.pop();
+        updateHist();
+        
+        // Clear Key
+        document.getElementById('sk-input').value = "";
+    }
+
+    function updateHist() {
+        const list = document.getElementById('hist-list');
+        list.innerHTML = history.map(h => `
             <div class="history-item">
-                <span>🔑 Key: ${h.key}...</span>
-                <span style="font-weight:800; color:#4f46e5;">${h.code}</span>
+                <span>🔑 Key: ${h.k}...</span>
+                <span style="font-weight:800; color:#4f46e5;">${h.c}</span>
             </div>
         `).join('');
     }
 
-    // Mail API Logic
+    // --- MAIL LOGIC ---
     document.getElementById('mail-tk').addEventListener('input', function(e) {
-        const val = e.target.value;
+        let val = e.target.value;
         if(val.includes('|')) {
-            const email = val.split('|')[0];
-            document.getElementById('ext-em').innerText = email;
-            document.getElementById('res-mail').classList.remove('hidden');
-            document.getElementById('mail-code').innerText = "WAITING...";
-            
-            // Simulating code arrival
+            let email = val.split('|')[0];
+            document.getElementById('mail-display').innerText = email;
+            document.getElementById('main-result').innerText = 'WAITING...';
             setTimeout(() => {
-                const code = Math.floor(1000 + Math.random() * 9000);
-                document.getElementById('mail-code').innerText = "FB-" + code;
+                let code = "FB-" + Math.floor(1000 + Math.random() * 9000);
+                document.getElementById('main-result').innerText = code;
+                navigator.clipboard.writeText(code);
             }, 3000);
         }
     });
 
-    function clearInput(id) {
-        document.getElementById(id).value = "";
-        if(id === 'mail-tk') document.getElementById('res-mail').classList.add('hidden');
+    function clearMail() {
+        document.getElementById('mail-tk').value = "";
+        document.getElementById('mail-display').innerText = "No Email Found";
+        document.getElementById('main-result').innerText = "WAITING...";
     }
 
-    // Live Checker Logic
-    function checkLive() {
-        const uid = document.getElementById('uid-in').value.trim();
+    function copyMail() {
+        let em = document.getElementById('mail-display').innerText;
+        if(em !== "No Email Found") navigator.clipboard.writeText(em);
+    }
+
+    // --- LIVE LOGIC ---
+    function runLive() {
+        let uid = document.getElementById('uid-input').value.trim();
         if(!uid) return;
-        
-        document.getElementById('res-live').classList.remove('hidden');
-        document.getElementById('live-st').innerText = "Checking...";
-
+        document.getElementById('main-result').innerText = "CHECKING...";
         setTimeout(() => {
-            const status = Math.random() > 0.5 ? 
-                `<span class="status-active">${uid} - ACTIVE ✅</span>` : 
-                `<span class="status-block">${uid} - BLOCKED ❌</span>`;
-            document.getElementById('live-st').innerHTML = status;
+            let active = Math.random() > 0.4;
+            let res = document.getElementById('main-result');
+            res.innerText = active ? "ACTIVE ✅" : "BLOCKED ❌";
+            res.style.color = active ? "#10b981" : "#ef4444";
         }, 1500);
-    }
-
-    function copyText(id) {
-        const text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text);
-        alert("Copied: " + text);
     }
 </script>
 
