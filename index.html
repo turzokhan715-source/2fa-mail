@@ -1,692 +1,202 @@
 <!DOCTYPE html>
-<html lang="en" style="background: 
- !important;">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Authentication Portal</title>
+    <title>Premium Auth Portal</title>
     <style>
-        html, body {
-            background: 
- !important;
-            background-color: 
- !important;
-        }
-
+        /* CSS অংশ - এখানে প্রিমিয়াম ডিজাইন করা হয়েছে */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: 
- !important;
+            background: #000; /* ব্যাকগ্রাউন্ড একদম কালো */
+            background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-;
-            z-index: -1;
+            color: white;
         }
 
         .container {
-            max-width: 500px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 450px;
         }
 
         .header {
             text-align: center;
-            color: 
-;
-            margin-bottom: 24px;
-            padding: 16px 0;
+            margin-bottom: 30px;
         }
 
         .header h1 {
-            font-size: 20px;
-            margin-bottom: 6px;
-            font-weight: 700;
-            color: 
-;
+            font-size: 22px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
         .header p {
             font-size: 13px;
-            color: 
-;
+            color: #888;
         }
 
+        /* প্রিমিয়াম কার্ড ডিজাইন */
         .card {
-            background: white;
+            background: #ffffff;
             border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            margin-bottom: 16px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 15px rgba(100, 149, 237, 0.1);
+            color: #333;
+            margin-bottom: 20px;
         }
 
+        /* মেইন পেজের সাদা বাটন (কালো টেক্সট) */
         .button-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .nav-button {
-            background: 
-;
-            color: 
-;
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 14px;
-            font-weight: 600;
+        .main-button {
+            background: #fff;
+            color: #000;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 20px 10px;
             cursor: pointer;
-            transition: all 0.3s;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-button:hover {
-            background: 
-;
-            transform: translateY(-2px);
-        }
-
-        .nav-button.active {
-            background: 
-;
-        }
-
-        .nav-button .icon {
-            font-size: 28px;
-        }
-
-        .section-header {
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .section-header h2 {
-            font-size: 18px;
-            color: 
-;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .section-header p {
-            font-size: 13px;
-            color: 
-;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-header {
+            font-weight: bold;
+            transition: 0.3s;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .input-label {
-            font-weight: 700;
-            color: 
-;
-            font-size: 12px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .clear-btn {
-            background: 
- !important;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .clear-btn:hover {
-            background: 
- !important;
-        }
-
-        .input-box {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid 
-;
-            border-radius: 12px;
-            font-size: 14px;
-            background: white;
-            color: 
-;
-        }
-
-        .input-box:focus {
-            outline: none;
-            border-color: 
-;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        textarea.input-box {
-            min-height: 100px;
-            resize: vertical;
-            font-family: 'Courier New', monospace;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, 
- 0%, 
- 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 14px 24px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .display-label {
-            font-size: 11px;
-            color: 
-;
-            margin-bottom: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .display-content {
-            font-size: 15px;
-            color: 
-;
-            font-weight: 600;
-            word-break: break-all;
-            margin-bottom: 16px;
-            padding: 12px;
-            background: 
-;
-            border-radius: 8px;
-        }
-
-        .code-display {
-            font-size: 32px;
-            text-align: center;
-            letter-spacing: 6px;
-            font-family: 'Courier New', monospace;
-            color: 
-;
-            font-weight: 700;
-            padding: 20px;
-            background: 
-;
-            border-radius: 12px;
-            margin-bottom: 16px;
-        }
-
-        .center-btn {
-            text-align: center;
-        }
-
-        .copy-btn {
-            background: linear-gradient(135deg, 
- 0%, 
- 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .copy-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .copy-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .recent-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            padding: 12px;
-            background: 
-;
-            border-radius: 12px;
-        }
-
-        .recent-header:hover {
-            background: 
-;
-        }
-
-        .recent-title {
-            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 10px;
         }
 
-        .recent-header h3 {
-            font-size: 15px;
-            color: 
-;
-            font-weight: 600;
+        .main-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+            border-color: #6495ED;
         }
 
-        .toggle-btn {
-            background: 
-;
+        .main-button span { font-size: 30px; }
+
+        /* ইনপুট বক্স - সাদা ব্যাকগ্রাউন্ড, কালো টেক্সট */
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            background: #fff;
+            color: #000;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-box:focus {
+            border-color: #6495ED;
+        }
+
+        /* Soft Blue Button (জেনারেট ও কপি) */
+        .btn-blue {
+            background: #6495ED;
             color: white;
             border: none;
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .recent-list {
-            background: 
-;
-            border-radius: 12px;
             padding: 12px;
-            margin-top: 12px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .recent-item {
-            background: white;
-            padding: 14px;
             border-radius: 10px;
-            margin-bottom: 8px;
-            border: 1px solid 
-;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
         }
 
-        .recent-key {
-            font-size: 12px;
-            color: 
-;
-            margin-bottom: 6px;
-            word-break: break-all;
+        .btn-blue:hover {
+            background: #4169E1;
+            box-shadow: 0 0 15px rgba(100, 149, 237, 0.4);
         }
 
-        .recent-code {
-            font-size: 18px;
-            font-weight: 700;
-            color: 
-;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 2px;
-        }
-
-        .recent-time {
-            font-size: 12px;
-            color: 
-;
-            margin-top: 6px;
-        }
-
-        .empty-state {
-            text-align: center;
-            color: 
-;
-            font-size: 13px;
-            padding: 20px;
-        }
+        .hidden { display: none; }
 
         .back-btn {
-            background: white;
-            color: 
-;
-            border: 1px solid 
-;
-            border-radius: 12px;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: 600;
+            color: #888;
             cursor: pointer;
-            margin-bottom: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .back-btn:hover {
-            background: 
-;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .waiting {
-            color: 
-;
-            font-style: italic;
-            font-size: 18px;
-            font-weight: 700;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .success-message {
-            background: linear-gradient(135deg, 
- 0%, 
- 100%);
-            color: 
-;
-            padding: 12px 20px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            text-align: center;
             font-size: 14px;
-            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        /* কোড ডিসপ্লে এলাকা */
+        .code-output {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            color: #6495ED;
+            margin: 15px 0;
+            border: 1px dashed #6495ED;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="mainPage">
-            <div class="header">
-                <h1>🔐 Secure Authentication Portal</h1>
-                <p>Generate codes instantly</p>
-            </div>
-            
-            <div class="card">
-                <div class="button-grid">
-                    <button class="nav-button active">
-                        <span class="icon">🔐</span>
-                    </button>
-                    <button class="nav-button" onclick="goToMail()">
-                        <span class="icon">📧</span>
-                    </button>
-                </div>
-            </div>
 
-            <div class="card">
-                <div class="section-header">
-                    <h2>🔐 2FA Authenticator</h2>
-                    <p>Secure Time-based One-Time Password Generator</p>
-                </div>
-                <div class="input-group">
-                    <div class="input-label">SECRET KEY</div>
-                    <input type="text" id="secretKey" class="input-box" placeholder="J8WHY1DRHMPKJ9XP">
-                </div>
-                <button class="btn" onclick="generateCode()">
-                    <span>🔑</span> Generate Code
-                </button>
-            </div>
-
-            <div id="codeCard" class="card hidden">
-                <div class="display-label">GENERATED CODE</div>
-                <div class="code-display" id="generatedCode">------</div>
-                <div class="center-btn">
-                    <button class="copy-btn" onclick="copyGenerated()">
-                        <span>📋</span> Copy Code
-                    </button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="recent-header" onclick="toggleRecent()">
-                    <div class="recent-title">
-                        <span>☐</span>
-                        <h3>Recent Codes</h3>
-                    </div>
-                    <button class="toggle-btn" id="toggleBtn">Show</button>
-                </div>
-                <div id="recentList" class="recent-list hidden">
-                    <p class="empty-state">No codes generated yet</p>
-                </div>
-            </div>
+<div class="container">
+    <div id="mainPage">
+        <div class="header">
+            <h1>🔐 Secure Authentication</h1>
+            <p>Generate codes instantly</p>
         </div>
-
-        <div id="mailPage" class="hidden">
-            <button class="back-btn" onclick="goToMain()">
-                <span>←</span> Back
-            </button>
-            
-            <div class="header">
-                <h1>📧 Get Hotmail/Outlook</h1>
-                <p>Verification Code</p>
-            </div>
-
-            <div class="card">
-                <div class="input-group">
-                    <div class="input-header">
-                        <div class="input-label">Account Details</div>
-                        <button class="clear-btn" onclick="clearMail()">
-                            <span>✕</span> Clear
-                        </button>
-                    </div>
-                    <textarea id="tokenInput" class="input-box" placeholder="Paste full token here...&#10;email|password|token" oninput="extractEmail()"></textarea>
+        <div class="card">
+            <div class="button-grid">
+                <div class="main-button" onclick="open2FA()">
+                    <span>🔐</span> 2FA AUTH
                 </div>
-            </div>
-
-            <div id="emailCard" class="card hidden">
-                <div class="display-label">📧 EXTRACTED EMAIL</div>
-                <div class="display-content" id="extractedEmail"></div>
-                <button class="copy-btn" onclick="copyEmail()">
-                    <span>📋</span> Copy Email
-                </button>
-            </div>
-
-            <div id="verifyCard" class="card hidden">
-                <div class="display-label">🔢 VERIFICATION CODE</div>
-                <div class="code-display waiting" id="verificationCode">Waiting... ⏳</div>
-                <div class="center-btn">
-                    <button class="copy-btn" id="copyVerifyBtn" onclick="copyVerify()" disabled>
-                        <span>📋</span> Copy Code
-                    </button>
+                <div class="main-button" onclick="openMail()">
+                    <span>📧</span> MAIL BOX
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Force dark background immediately
-        document.documentElement.style.setProperty('background', '
-', 'important');
-        document.body.style.setProperty('background', '
-', 'important');
-
-        let recent = [];
-        let showRecent = false;
-        let checkInterval = null;
-
-        function goToMain() {
-            document.getElementById('mainPage').classList.remove('hidden');
-            document.getElementById('mailPage').classList.add('hidden');
-        }
-
-        function goToMail() {
-            document.getElementById('mainPage').classList.add('hidden');
-            document.getElementById('mailPage').classList.remove('hidden');
-        }
-
-        function generateCode() {
-            const key = document.getElementById('secretKey').value.trim();
-            if (!key) {
-                alert('⚠️ Please enter a secret key!');
-                return;
-            }
-
-            const code = String(Math.floor(100000 + Math.random() * 900000));
-            document.getElementById('generatedCode').textContent = code;
-            document.getElementById('codeCard').classList.remove('hidden');
+    <div id="page2FA" class="hidden">
+        <span class="back-btn" onclick="goHome()">← Back to Home</span>
+        <div class="card">
+            <h3>🔐 2FA Authenticator</h3>
+            <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Enter secret key to get code</p>
             
-            navigator.clipboard.writeText(code);
-            showMessage('✅ Code generated and copied!');
-
-            const time = new Date().toLocaleTimeString('en-US', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                hour12: true 
-            });
+            <label style="font-size: 13px; font-weight: bold;">SECRET KEY</label>
+            <input type="text" id="secretKey" class="input-box" placeholder="Paste your key here...">
             
-            recent.unshift({ key: key, code: code, time: time });
-            if (recent.length > 10) recent.pop();
-            updateRecent();
-        }
+            <button class="btn-blue" onclick="generate2FA()">🔑 Generate Code</button>
+            
+            <div id="output2FA" class="hidden">
+                <div class="code-output" id="val2FA">000000</div>
+                <button class="btn-blue" style="background: #333;" onclick="copy('val2FA')">📋 Copy Code</button>
+            </div>
+        </div>
+    </div>
 
-        function copyGenerated() {
-            const text = document.getElementById('generatedCode').textContent;
-            if (text && text !== '------') {
-                navigator.clipboard.writeText(text);
-                showMessage('✅ Copied!');
-            }
-        }
-
-        function updateRecent() {
-            const list = document.getElementById('recentList');
-            if (recent.length === 0) {
-                list.innerHTML = '<p class="empty-state">No codes generated yet</p>';
-                return;
-            }
-
-            list.innerHTML = recent.map(item => `
-                <div class="recent-item">
-                    <div class="recent-key">🔑 ${item.key}</div>
-                    <div class="recent-code">${item.code}</div>
-                    <div class="recent-time">${item.time}</div>
+    <div id="pageMail" class="hidden">
+        <span class="back-btn" onclick="goHome()">← Back to Home</span>
+        <div class="card">
+            <h3>📧 Mail Box Generator</h3>
+            <textarea id="mailInput" class="input-box" style="height: 80px;" placeholder="email|pass|token..."></textarea>
+            
+            <div id="mailResult" class="hidden">
+                <div style="margin-top: 15px;">
+                    <label style="font-size: 12px;">EXTRACTED EMAIL:</label>
+                    <div id="extEmail" style="font-weight: bold; padding: 10px; background: #eee; border-radius: 5px; margin-top: 5px;"></div>
+                    <button class="btn-blue" style="padding: 5px; font-size: 12px;" onclick="copy('extEmail')">Copy Email</button>
                 </div>
-            `).join('');
-        }
 
-        function toggleRecent() {
-            showRecent = !showRecent;
-            const list = document.getElementById('recentList');
-            const btn = document.getElementById('toggleBtn');
-            
-            if (showRecent) {
-                list.classList.remove('hidden');
-                btn.textContent = 'Hide';
-            } else {
-                list.classList.add('hidden');
-                btn.textContent = 'Show';
-            }
-        }
-
-        function extractEmail() {
-            const token = document.getElementById('tokenInput').value.trim();
-            
-            if (!token) {
-                document.getElementById('emailCard').classList.add('hidden');
-                document.getElementById('verifyCard').classList.add('hidden');
-                if (checkInterval) clearInterval(checkInterval);
-                return;
-            }
-
-            const parts = token.split('|');
-            if (parts.length > 0 && parts[0].includes('@')) {
-                document.getElementById('extractedEmail').textContent = parts[0];
-                document.getElementById('emailCard').classList.remove('hidden');
-                document.getElementById('verifyCard').classList.remove('hidden');
-                startCheck();
-            }
-        }
-
-        function startCheck() {
-            if (checkInterval) clearInterval(checkInterval);
-            
-            document.getElementById('verificationCode').textContent = 'Waiting... ⏳';
-            document.getElementById('verificationCode').classList.add('waiting');
-            document.getElementById('copyVerifyBtn').disabled = true;
-            
-            checkInterval = setInterval(() => {
-                if (Math.random() < 0.2) {
-                    const code = String(Math.floor(100000 + Math.random() * 900000));
-                    document.getElementById('verificationCode').textContent = code;
-                    document.getElementById('verificationCode').classList.remove('waiting');
-                    document.getElementById('copyVerifyBtn').disabled = false;
-                    showMessage('✅ Code received!');
-                    clearInterval(checkInterval);
-                }
-            }, 2000);
-        }
-
-        function clearMail() {
-            document.getElementById('tokenInput').value = '';
-            document.getElementById('emailCard').classList.add('hidden');
-            document.getElementById('verifyCard').classList.add('hidden');
-            if (checkInterval) clearInterval(checkInterval);
-        }
-
-        function copyEmail() {
-            const text = document.getElementById('extractedEmail').textContent;
-            if (text) {
-                navigator.clipboard.writeText(text);
-                showMessage('✅ Copied!');
-            }
-        }
-
-        function copyVerify() {
-            const text = document.getElementById('verificationCode').textContent;
-            if (text && text !== 'Waiting... ⏳') {
-                navigator.clipboard.writeText(text);
-                showMessage('✅ Copied!');
-            }
-        }
-
-        function showMessage(msg) {
-            const old = document.querySelector('.success-message');
-            if (old) old.remove();
-
-            const div = document.createElement('div');
-            div.className = 'success-message';
-            div.textContent = msg;
-            
-            document.querySelector('.container').insertBefore(div, document.querySelector('.container').firstChild);
-
-            setTimeout(() => div.remove(), 2500);
-        }
-    </script>
-</body>
-</html>
+                <div style="margin-top: 15px;">
+                    <label
