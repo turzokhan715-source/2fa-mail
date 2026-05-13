@@ -5,198 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Auth Portal</title>
     <style>
-        /* CSS অংশ - এখানে প্রিমিয়াম ডিজাইন করা হয়েছে */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            background: #000; /* ব্যাকগ্রাউন্ড একদম কালো */
-            background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
+        /* CSS অংশ */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        
+        body { 
+            background: #000; /* কালো ব্যাকগ্রাউন্ড */
+            color: #333; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
-            color: white;
         }
 
-        .container {
-            width: 100%;
-            max-width: 450px;
-        }
+        .container { width: 100%; max-width: 400px; }
 
-        .header {
+        /* সাদা প্রিমিয়াম কার্ড */
+        .card { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
             text-align: center;
-            margin-bottom: 30px;
         }
 
-        .header h1 {
-            font-size: 22px;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
+        .header h1 { font-size: 20px; color: white; margin-bottom: 20px; text-align: center; }
 
-        .header p {
-            font-size: 13px;
-            color: #888;
-        }
-
-        /* প্রিমিয়াম কার্ড ডিজাইন */
-        .card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 15px rgba(100, 149, 237, 0.1);
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        /* মেইন পেজের সাদা বাটন (কালো টেক্সট) */
-        .button-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .main-button {
-            background: #fff;
-            color: #000;
-            border: 2px solid #eee;
-            border-radius: 15px;
-            padding: 20px 10px;
-            cursor: pointer;
-            text-align: center;
+        /* মেইন বাটন স্টাইল */
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        
+        .main-btn { 
+            background: #fff; 
+            color: #000; 
+            border: 1px solid #ddd; 
+            padding: 20px 10px; 
+            border-radius: 15px; 
+            cursor: pointer; 
             font-weight: bold;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            font-size: 14px;
         }
 
-        .main-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
-            border-color: #6495ED;
-        }
-
-        .main-button span { font-size: 30px; }
-
-        /* ইনপুট বক্স - সাদা ব্যাকগ্রাউন্ড, কালো টেক্সট */
-        .input-box {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            background: #fff;
-            color: #000;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .input-box:focus {
-            border-color: #6495ED;
-        }
-
-        /* Soft Blue Button (জেনারেট ও কপি) */
-        .btn-blue {
-            background: #6495ED;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            width: 100%;
+        /* নীল বাটন স্টাইল */
+        .blue-btn { 
+            background: #6495ED; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 10px; 
+            width: 100%; 
+            margin-top: 15px; 
+            cursor: pointer; 
             font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: 0.3s;
         }
 
-        .btn-blue:hover {
-            background: #4169E1;
-            box-shadow: 0 0 15px rgba(100, 149, 237, 0.4);
+        /* ইনপুট বক্স */
+        input, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 10px; 
+            border-radius: 8px; 
+            border: 1px solid #ccc; 
+            background: #fff; 
+            color: #000; 
+            font-size: 14px;
+        }
+
+        /* রেজাল্ট বক্স */
+        .result-box { 
+            background: #f4f7ff; 
+            padding: 15px; 
+            border-radius: 10px; 
+            margin-top: 15px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            color: #6495ED;
+            border: 1px dashed #6495ED;
         }
 
         .hidden { display: none; }
-
-        .back-btn {
-            color: #888;
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        /* কোড ডিসপ্লে এলাকা */
-        .code-output {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 5px;
-            color: #6495ED;
-            margin: 15px 0;
-            border: 1px dashed #6495ED;
-        }
+        .back-link { color: #888; cursor: pointer; display: block; margin-bottom: 15px; font-size: 13px; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    
     <div id="mainPage">
-        <div class="header">
-            <h1>🔐 Secure Authentication</h1>
-            <p>Generate codes instantly</p>
-        </div>
+        <div class="header"><h1>🔐 Secure Portal</h1></div>
         <div class="card">
-            <div class="button-grid">
-                <div class="main-button" onclick="open2FA()">
-                    <span>🔐</span> 2FA AUTH
-                </div>
-                <div class="main-button" onclick="openMail()">
-                    <span>📧</span> MAIL BOX
-                </div>
+            <div class="btn-grid">
+                <button class="main-btn" onclick="open2FA()">🔐<br>2FA AUTH</button>
+                <button class="main-btn" onclick="openMail()">📧<br>MAIL BOX</button>
             </div>
         </div>
     </div>
 
     <div id="page2FA" class="hidden">
-        <span class="back-btn" onclick="goHome()">← Back to Home</span>
+        <span class="back-link" onclick="goHome()">← Back to Home</span>
         <div class="card">
-            <h3>🔐 2FA Authenticator</h3>
-            <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Enter secret key to get code</p>
-            
-            <label style="font-size: 13px; font-weight: bold;">SECRET KEY</label>
-            <input type="text" id="secretKey" class="input-box" placeholder="Paste your key here...">
-            
-            <button class="btn-blue" onclick="generate2FA()">🔑 Generate Code</button>
-            
-            <div id="output2FA" class="hidden">
-                <div class="code-output" id="val2FA">000000</div>
-                <button class="btn-blue" style="background: #333;" onclick="copy('val2FA')">📋 Copy Code</button>
+            <h3>2FA Authenticator</h3>
+            <input type="text" id="sk" placeholder="Enter Secret Key">
+            <button class="blue-btn" onclick="get2FA()">Generate Code</button>
+            <div id="res2FA" class="hidden">
+                <div class="result-box" id="val2FA">000000</div>
+                <button class="blue-btn" style="background:#333" onclick="copy('val2FA')">Copy Code</button>
             </div>
         </div>
     </div>
 
     <div id="pageMail" class="hidden">
-        <span class="back-btn" onclick="goHome()">← Back to Home</span>
+        <span class="back-link" onclick="goHome()">← Back to Home</span>
         <div class="card">
-            <h3>📧 Mail Box Generator</h3>
-            <textarea id="mailInput" class="input-box" style="height: 80px;" placeholder="email|pass|token..."></textarea>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <h3>Mail Box</h3>
+                <button onclick="clearAll()" style="color:red; background:none; border:none; cursor:pointer;">✕ Clear</button>
+            </div>
+            <textarea id="tkInput" placeholder="Paste: email|pass|token" rows="3"></textarea>
             
-            <div id="mailResult" class="hidden">
-                <div style="margin-top: 15px;">
-                    <label style="font-size: 12px;">EXTRACTED EMAIL:</label>
-                    <div id="extEmail" style="font-weight: bold; padding: 10px; background: #eee; border-radius: 5px; margin-top: 5px;"></div>
-                    <button class="btn-blue" style="padding: 5px; font-size: 12px;" onclick="copy('extEmail')">Copy Email</button>
-                </div>
+            <div id="resMail" class="hidden">
+                <div style="margin-top:10px; font-size:12px; text-align:left;">Email:</div>
+                <div id="extEmail" style="background:#eee; padding:8px; border-radius:5px; font-size:13px; word-break: break-all;"></div>
+                
+                <div style="margin-top:10px; font-size:12px; text-align:left;">Code:</div>
+                <div class="result-box" id="valMail">Waiting... ⏳</div>
+                <button class="blue-btn" onclick="copy('valMail')">Copy Code</button>
+            </div>
+        </div>
+    </div>
 
-                <div style="margin-top: 15px;">
-                    <label
+</div>
+
+<script>
+    // বাটন ক্লিক করলে পেজ খোলার ফাংশন
+    function open2FA() {
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('page2FA').style.display = 'block';
+    }
+
+    function openMail() {
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('pageMail').style.display = 'block';
+    }
+
+    function goHome() {
+        document.getElementById('mainPage').style.display = 'block';
+        document.getElementById('page2FA').style.display = 'none';
+        document.getElementById('pageMail').style.display = 'none';
+    }
+
+    // 2FA কোড জেনারেট
+    function get2FA() {
+        let input = document.getElementById('sk').value;
+        if(input === "") return alert("Please enter key");
+        document.getElementById('res2FA').style.display = 'block';
+        document.getElementById('val2FA').innerText = Math.floor(100000 + Math.random() * 900000);
+    }
+
+    // Mail এক্সট্রাকশন
+    document.getElementById('tkInput').oninput = function() {
+        let val = this.value;
+        if(val.includes('|')) {
+            let email = val.split('|')[0];
+            document.getElementById('extEmail').innerText = email;
+            document.getElementById('resMail').style.display = 'block';
+            
+            // অটোমেটিক ৩ সেকেন্ড পর কোড আসা (সিমুলেশন)
+            setTimeout(() => {
+                document.getElementById('valMail').innerText = Math.floor(100000 + Math.random() * 900000);
+            }, 3000);
+        }
+    };
+
+    function clearAll() {
+        document.getElementById('tkInput').value = "";
+        document.getElementById('resMail').style.display = 'none';
+        document.getElementById('valMail').innerText = "Waiting... ⏳";
+    }
+
+    function copy(id) {
+        let text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text);
+        alert("Copied: " + text);
+    }
+</script>
+
+</body>
+</html>
