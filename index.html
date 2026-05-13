@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Auth Portal</title>
+    <title>Premium Secure Portal</title>
     <style>
-        /* ক্যানভা স্টাইল বেস */
         * {
             margin: 0;
             padding: 0;
@@ -14,12 +13,11 @@
         }
 
         body {
-            background: #0f172a; /* ক্লিন ডার্ক ব্যাকগ্রাউন্ড */
+            background: #0f172a;
             background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
             padding: 20px;
         }
 
@@ -28,188 +26,195 @@
             max-width: 420px;
         }
 
-        /* প্রিমিয়াম হোয়াইট কার্ড - যেমনটা ক্যানভায় দেখেছেন */
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .header h1 { font-size: 22px; font-weight: 700; }
+        .header p { font-size: 13px; opacity: 0.7; }
+
+        /* সাদা প্রিমিয়াম কার্ড */
         .card {
             background: #ffffff;
-            border-radius: 24px; /* বেশি গোল বাটন ও কার্ড */
-            padding: 30px;
+            border-radius: 24px;
+            padding: 25px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            text-align: center;
+            margin-bottom: 20px;
         }
 
-        .header h1 {
-            color: white;
-            font-size: 20px;
-            margin-bottom: 25px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        /* ছোট এবং পরিপাটি বাটন গ্রিড */
-        .button-grid {
+        /* টপ নেভিগেশন বাটন (হোম পেজেই থাকবে) */
+        .top-nav {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .nav-btn {
             background: #ffffff;
-            color: #1e293b;
             border: 1.5px solid #e2e8f0;
-            border-radius: 18px;
-            padding: 15px 10px;
+            border-radius: 16px;
+            padding: 12px;
             cursor: pointer;
+            text-align: center;
             font-weight: 600;
             font-size: 13px;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
+            color: #1e293b;
+            transition: 0.3s;
         }
 
-        .nav-btn:hover {
-            border-color: #64748b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        .nav-btn.active {
+            border-color: #1e3a8a;
+            background: #f8fafc;
         }
 
-        .nav-btn span {
-            font-size: 24px;
-        }
-
-        /* ইনপুট ফিল্ডস - সাদা ব্যাকগ্রাউন্ডে কালো লেখা */
-        .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
+        /* ইনপুট গ্রুপ */
         .label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: #64748b;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
+            text-align: left;
+            display: block;
         }
 
         .input-box {
             width: 100%;
-            padding: 12px 16px;
+            padding: 14px;
             border-radius: 12px;
             border: 1.5px solid #e2e8f0;
             background: #ffffff;
             color: #000000;
-            font-size: 14px;
+            font-size: 15px;
             outline: none;
+            margin-bottom: 15px;
         }
 
-        /* নেভি ব্লু বাটন (আপনার রিকোয়ারমেন্ট অনুযায়ী) */
+        /* নেভি ব্লু বাটন */
         .action-btn {
-            background: #1e3a8a; /* Navy Blue */
+            background: #1e3a8a;
             color: #ffffff;
             border: none;
-            padding: 12px;
+            padding: 14px;
             border-radius: 12px;
             width: 100%;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
             transition: 0.3s;
         }
 
-        .action-btn:hover {
-            background: #1e40af;
-            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4);
-        }
+        .action-btn:hover { background: #1e40af; }
 
+        /* কোড ডিসপ্লে */
         .code-area {
-            background: #f8fafc;
+            background: #f1f5f9;
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-top: 15px;
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 32px;
+            font-weight: 800;
             color: #1e3a8a;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
+            text-align: center;
             border: 1px dashed #cbd5e1;
         }
 
         .hidden { display: none; }
         
-        .back-link {
-            color: #94a3b8;
+        /* ক্লিয়ার বাটন */
+        .clear-btn {
+            float: right;
+            color: #ef4444;
             cursor: pointer;
-            font-size: 13px;
-            display: inline-block;
-            margin-bottom: 15px;
-            text-decoration: none;
+            font-size: 11px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div id="mainPage">
+    <div class="header">
         <h1>🔐 Secure Portal</h1>
-        <div class="card">
-            <div class="button-grid">
-                <div class="nav-btn" onclick="openPage('page2FA')">
-                    <span>🔐</span> 2FA AUTH
-                </div>
-                <div class="nav-btn" onclick="openPage('pageMail')">
-                    <span>📧</span> MAIL BOX
-                </div>
-            </div>
-        </div>
+        <p>Your instant auth tool</p>
     </div>
 
-    <div id="page2FA" class="hidden">
-        <a class="back-link" onclick="openPage('mainPage')">← Back to Home</a>
+    <div class="top-nav">
+        <div class="nav-btn active" onclick="switchTab('2fa')">🔐 2FA AUTH</div>
+        <div class="nav-btn" onclick="switchTab('mail')">📧 MAIL BOX</div>
+    </div>
+
+    <div id="2faSection">
         <div class="card">
-            <div class="input-group">
-                <p class="label">Secret Key</p>
-                <input type="text" id="sk" class="input-box" placeholder="Enter key...">
-            </div>
-            <button class="action-btn" onclick="gen2FA()">Generate Code</button>
+            <span class="label">Secret Key</span>
+            <input type="text" id="sk" class="input-box" placeholder="J8WHY1DRHMPKJ9XP">
+            <button class="action-btn" onclick="gen2FA()">🔑 Generate Code</button>
+            
             <div id="res2FA" class="hidden">
                 <div class="code-area" id="v2FA">000000</div>
-                <button class="action-btn" style="background: #334155;" onclick="copy('v2FA')">Copy Code</button>
+                <button class="action-btn" style="background: #334155; margin-top:10px;" onclick="copy('v2FA')">📋 Copy Code</button>
             </div>
+        </div>
+
+        <div class="card" style="padding: 15px;">
+            <span class="label">📋 Recent Codes <span style="float:right; color:#1e3a8a;">Show</span></span>
+            <p style="font-size:12px; color:#94a3b8; margin-top:10px;">No codes generated yet</p>
         </div>
     </div>
 
-    <div id="pageMail" class="hidden">
-        <a class="back-link" onclick="openPage('mainPage')">← Back to Home</a>
+    <div id="mailSection" class="hidden">
         <div class="card">
-            <div class="input-group">
-                <p class="label">Account Token</p>
-                <textarea id="tk" class="input-box" rows="3" placeholder="email|pass|token..."></textarea>
-            </div>
+            <span class="clear-btn" onclick="clearMail()">✕ Clear</span>
+            <span class="label">Account Token</span>
+            <textarea id="tk" class="input-box" rows="3" placeholder="email|pass|token..."></textarea>
+            
             <div id="resMail" class="hidden">
-                <p class="label">Extracted Email</p>
-                <div id="em" style="background:#f1f5f9; padding:10px; border-radius:8px; font-size:13px; margin-bottom:15px; font-weight:600;"></div>
-                <p class="label">Verification Code</p>
-                <div class="code-area" id="vMail" style="font-size:20px;">Waiting... ⏳</div>
-                <button class="action-btn" onclick="copy('vMail')">Copy Code</button>
+                <span class="label">Extracted Email</span>
+                <div id="em" style="background:#f8fafc; padding:12px; border-radius:10px; font-size:13px; margin-bottom:15px; font-weight:700; color:#1e293b; border: 1px solid #e2e8f0;"></div>
+                
+                <span class="label">Verification Code</span>
+                <div class="code-area" id="vMail" style="font-size:22px;">Waiting... ⏳</div>
+                <button class="action-btn" onclick="copy('vMail')">📋 Copy Code</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    function openPage(id) {
-        document.getElementById('mainPage').classList.add('hidden');
-        document.getElementById('page2FA').classList.add('hidden');
-        document.getElementById('pageMail').classList.add('hidden');
-        document.getElementById(id).classList.remove('hidden');
+    // ট্যাব পরিবর্তন করার ফাংশন
+    function switchTab(type) {
+        const btn2fa = document.querySelectorAll('.nav-btn')[0];
+        const btnMail = document.querySelectorAll('.nav-btn')[1];
+        
+        if(type === '2fa') {
+            document.getElementById('2faSection').classList.remove('hidden');
+            document.getElementById('mailSection').classList.add('hidden');
+            btn2fa.classList.add('active');
+            btnMail.classList.remove('active');
+        } else {
+            document.getElementById('2faSection').classList.add('hidden');
+            document.getElementById('mailSection').classList.remove('hidden');
+            btnMail.classList.add('active');
+            btn2fa.classList.remove('active');
+        }
     }
 
+    // 2FA জেনারেটর
     function gen2FA() {
-        if(!document.getElementById('sk').value) return;
+        let val = document.getElementById('sk').value;
+        if(!val) return;
         document.getElementById('res2FA').classList.remove('hidden');
-        document.getElementById('v2FA').innerText = Math.floor(100000 + Math.random() * 900000);
+        let code = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('v2FA').innerText = code;
+        
+        // অটো কপি
+        navigator.clipboard.writeText(code);
     }
 
+    // মেইল এক্সট্রাকশন
     document.getElementById('tk').addEventListener('input', function() {
         let val = this.value;
         if(val.includes('|')) {
@@ -217,9 +222,14 @@
             document.getElementById('resMail').classList.remove('hidden');
             setTimeout(() => {
                 document.getElementById('vMail').innerText = Math.floor(100000 + Math.random() * 900000);
-            }, 2500);
+            }, 3000);
         }
     });
+
+    function clearMail() {
+        document.getElementById('tk').value = "";
+        document.getElementById('resMail').classList.add('hidden');
+    }
 
     function copy(id) {
         navigator.clipboard.writeText(document.getElementById(id).innerText);
