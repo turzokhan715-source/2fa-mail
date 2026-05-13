@@ -3,191 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Auth Portal</title>
+    <title>Secure Authentication Portal</title>
     <style>
-        /* CSS অংশ */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        
-        body { 
-            background: #000; /* কালো ব্যাকগ্রাউন্ড */
-            color: #333; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh;
+        /* 🌑 Dark Mode Base */
+        html, body {
+            background-color: #000000 !important;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .container { width: 100%; max-width: 400px; }
-
-        /* সাদা প্রিমিয়াম কার্ড */
-        .card { 
-            background: white; 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        .header h1 {
             text-align: center;
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 20px;
         }
 
-        .header h1 { font-size: 20px; color: white; margin-bottom: 20px; text-align: center; }
+        /* ⚪ White Cards for contrast */
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 16px;
+            color: #000000; /* Card এর ভেতর সব লেখা কালো */
+        }
 
-        /* মেইন বাটন স্টাইল */
-        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
-        
-        .main-btn { 
-            background: #fff; 
-            color: #000; 
-            border: 1px solid #ddd; 
-            padding: 20px 10px; 
-            border-radius: 15px; 
-            cursor: pointer; 
+        /* 🔵 Navy Blue Buttons */
+        .btn, .nav-button, .copy-btn {
+            background: #000080; /* Navy Blue */
+            color: white !important;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
             font-weight: bold;
-            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        /* নীল বাটন স্টাইল */
-        .blue-btn { 
-            background: #6495ED; 
-            color: white; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 10px; 
-            width: 100%; 
-            margin-top: 15px; 
-            cursor: pointer; 
+        .nav-button {
+            width: 48%;
+            display: inline-block;
+        }
+
+        /* ⌨️ White Input Boxes with Black Text */
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #000080;
+            border-radius: 8px;
+            background: #ffffff !important;
+            color: #000000 !important;
+            font-size: 15px;
+            margin-top: 8px;
+            box-sizing: border-box;
+        }
+
+        .code-display {
+            background: #f0f0f0;
+            color: #000080;
+            font-size: 30px;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
             font-weight: bold;
-        }
-
-        /* ইনপুট বক্স */
-        input, textarea { 
-            width: 100%; 
-            padding: 12px; 
-            margin-top: 10px; 
-            border-radius: 8px; 
-            border: 1px solid #ccc; 
-            background: #fff; 
-            color: #000; 
-            font-size: 14px;
-        }
-
-        /* রেজাল্ট বক্স */
-        .result-box { 
-            background: #f4f7ff; 
-            padding: 15px; 
-            border-radius: 10px; 
-            margin-top: 15px; 
-            font-size: 18px; 
-            font-weight: bold; 
-            color: #6495ED;
-            border: 1px dashed #6495ED;
+            letter-spacing: 5px;
+            margin: 10px 0;
         }
 
         .hidden { display: none; }
-        .back-link { color: #888; cursor: pointer; display: block; margin-bottom: 15px; font-size: 13px; }
+        .back-btn { color: #ffffff; cursor: pointer; margin-bottom: 15px; display: inline-block; }
+        
+        .success-message {
+            background: #008000;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    
-    <div id="mainPage">
-        <div class="header"><h1>🔐 Secure Portal</h1></div>
-        <div class="card">
-            <div class="btn-grid">
-                <button class="main-btn" onclick="open2FA()">🔐<br>2FA AUTH</button>
-                <button class="main-btn" onclick="openMail()">📧<br>MAIL BOX</button>
+    <div class="container">
+        <div id="mainPage">
+            <div class="header">
+                <h1>🔐 Secure Authentication Portal</h1>
+            </div>
+            <div class="card" style="text-align: center;">
+                <button class="nav-button" onclick="showMail()">📧 MAIL BOX</button>
+                <button class="nav-button" onclick="show2FA()">🔐 2FA AUTH</button>
             </div>
         </div>
-    </div>
 
-    <div id="page2FA" class="hidden">
-        <span class="back-link" onclick="goHome()">← Back to Home</span>
-        <div class="card">
-            <h3>2FA Authenticator</h3>
-            <input type="text" id="sk" placeholder="Enter Secret Key">
-            <button class="blue-btn" onclick="get2FA()">Generate Code</button>
-            <div id="res2FA" class="hidden">
-                <div class="result-box" id="val2FA">000000</div>
-                <button class="blue-btn" style="background:#333" onclick="copy('val2FA')">Copy Code</button>
+        <div id="2faPage" class="hidden">
+            <span class="back-btn" onclick="showMain()">← Back</span>
+            <div class="card">
+                <h3>🔐 2FA Authenticator</h3>
+                <label>SECRET KEY</label>
+                <input type="text" id="secretKey" class="input-box" placeholder="Enter key here">
+                <button class="btn" onclick="generate2FA()">Generate Code</button>
+                <div id="res2FA" class="hidden">
+                    <div class="code-display" id="val2FA">000000</div>
+                    <button class="btn" style="background:#333" onclick="copy('val2FA')">Copy Code</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="pageMail" class="hidden">
-        <span class="back-link" onclick="goHome()">← Back to Home</span>
-        <div class="card">
-            <div style="display:flex; justify-content: space-between; align-items: center;">
-                <h3>Mail Box</h3>
-                <button onclick="clearAll()" style="color:red; background:none; border:none; cursor:pointer;">✕ Clear</button>
-            </div>
-            <textarea id="tkInput" placeholder="Paste: email|pass|token" rows="3"></textarea>
-            
-            <div id="resMail" class="hidden">
-                <div style="margin-top:10px; font-size:12px; text-align:left;">Email:</div>
-                <div id="extEmail" style="background:#eee; padding:8px; border-radius:5px; font-size:13px; word-break: break-all;"></div>
+        <div id="mailPage" class="hidden">
+            <span class="back-btn" onclick="showMain()">← Back</span>
+            <div class="card">
+                <div style="display:flex; justify-content: space-between;">
+                    <h3>📧 Mail Box</h3>
+                    <button onclick="clearMail()" style="color:red; border:none; background:none; cursor:pointer;">Clear</button>
+                </div>
+                <textarea id="tokenInput" class="input-box" style="height:80px" placeholder="email|pass|token" oninput="extractEmail()"></textarea>
                 
-                <div style="margin-top:10px; font-size:12px; text-align:left;">Code:</div>
-                <div class="result-box" id="valMail">Waiting... ⏳</div>
-                <button class="blue-btn" onclick="copy('valMail')">Copy Code</button>
+                <div id="mailResult" class="hidden">
+                    <p style="margin-top:10px;">Extracted Email:</p>
+                    <div id="extEmail" style="font-weight:bold; padding:8px; background:#eee; border-radius:5px;"></div>
+                    <div class="code-display" id="mailCode">Waiting... ⏳</div>
+                    <button class="btn" onclick="copy('mailCode')">Copy Code</button>
+                </div>
             </div>
         </div>
     </div>
 
-</div>
-
-<script>
-    // বাটন ক্লিক করলে পেজ খোলার ফাংশন
-    function open2FA() {
-        document.getElementById('mainPage').style.display = 'none';
-        document.getElementById('page2FA').style.display = 'block';
-    }
-
-    function openMail() {
-        document.getElementById('mainPage').style.display = 'none';
-        document.getElementById('pageMail').style.display = 'block';
-    }
-
-    function goHome() {
-        document.getElementById('mainPage').style.display = 'block';
-        document.getElementById('page2FA').style.display = 'none';
-        document.getElementById('pageMail').style.display = 'none';
-    }
-
-    // 2FA কোড জেনারেট
-    function get2FA() {
-        let input = document.getElementById('sk').value;
-        if(input === "") return alert("Please enter key");
-        document.getElementById('res2FA').style.display = 'block';
-        document.getElementById('val2FA').innerText = Math.floor(100000 + Math.random() * 900000);
-    }
-
-    // Mail এক্সট্রাকশন
-    document.getElementById('tkInput').oninput = function() {
-        let val = this.value;
-        if(val.includes('|')) {
-            let email = val.split('|')[0];
-            document.getElementById('extEmail').innerText = email;
-            document.getElementById('resMail').style.display = 'block';
-            
-            // অটোমেটিক ৩ সেকেন্ড পর কোড আসা (সিমুলেশন)
-            setTimeout(() => {
-                document.getElementById('valMail').innerText = Math.floor(100000 + Math.random() * 900000);
-            }, 3000);
+    <script>
+        function showMain() {
+            document.getElementById('mainPage').classList.remove('hidden');
+            document.getElementById('2faPage').classList.add('hidden');
+            document.getElementById('mailPage').classList.add('hidden');
         }
-    };
+        function show2FA() {
+            document.getElementById('mainPage').classList.add('hidden');
+            document.getElementById('2faPage').classList.remove('hidden');
+        }
+        function showMail() {
+            document.getElementById('mainPage').classList.add('hidden');
+            document.getElementById('mailPage').classList.remove('hidden');
+        }
 
-    function clearAll() {
-        document.getElementById('tkInput').value = "";
-        document.getElementById('resMail').style.display = 'none';
-        document.getElementById('valMail').innerText = "Waiting... ⏳";
-    }
+        function generate2FA() {
+            let key = document.getElementById('secretKey').value;
+            if(!key) return alert("Enter key");
+            document.getElementById('res2FA').classList.remove('hidden');
+            document.getElementById('val2FA').innerText = Math.floor(100000 + Math.random() * 900000);
+        }
 
-    function copy(id) {
-        let text = document.getElementById(id).innerText;
-        navigator.clipboard.writeText(text);
-        alert("Copied: " + text);
-    }
-</script>
+        function extractEmail() {
+            let val = document.getElementById('tokenInput').value;
+            if(val.includes('|')) {
+                document.getElementById('extEmail').innerText = val.split('|')[0];
+                document.getElementById('mailResult').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('mailCode').innerText = Math.floor(100000 + Math.random() * 900000);
+                }, 2000);
+            }
+        }
 
+        function clearMail() {
+            document.getElementById('tokenInput').value = '';
+            document.getElementById('mailResult').classList.add('hidden');
+        }
+
+        function copy(id) {
+            let text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            alert("Copied!");
+        }
+    </script>
 </body>
 </html>
